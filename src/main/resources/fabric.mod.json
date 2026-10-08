@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "nsvmobs",
+	"version": "${version}",
+	"name": "Not-So-Vanilla Mobs",
+	"description": "Ten new mobs: fungal and frozen zombies, briar and knight skeletons, a swamp-ambushing toad, cave gloomwings, desert scorpions, a gardening tortoise, the calmest capybara and a pocket dragon you can tame.",
+	"authors": ["minal"],
+	"contact": {
+		"sources": "https://github.com/radhepa/Not-so-Vanilla-Mobs"
+	},
+	"license": "MIT",
+	"icon": "assets/nsvmobs/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["dev.nsvmobs.NsvMobs"],
+		"client": ["dev.nsvmobs.client.NsvMobsClient"]
+	},
+	"mixins": [
+		"nsvmobs.compat.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"villagefriends": "*",
+		"villagefriends_rpg": "*"
+	}
+}

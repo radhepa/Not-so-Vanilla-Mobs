@@ -1,0 +1,483 @@
+{
+ "texture": [
+  64,
+  64
+ ],
+ "parts": [
+  {
+   "name": "head",
+   "parent": "",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      -4,
+      -8,
+      -4
+     ],
+     "size": [
+      8,
+      8,
+      8
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "hat",
+   "parent": "head",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": []
+  },
+  {
+   "name": "body",
+   "parent": "",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      16,
+      16
+     ],
+     "from": [
+      -4,
+      0,
+      -2
+     ],
+     "size": [
+      8,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      40
+     ],
+     "from": [
+      -3,
+      3,
+      2
+     ],
+     "size": [
+      4,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      40
+     ],
+     "from": [
+      0,
+      7,
+      2
+     ],
+     "size": [
+      4,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_arm",
+   "parent": "",
+   "pivot": [
+    -5,
+    2,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      40,
+      16
+     ],
+     "from": [
+      -3,
+      -2,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_arm",
+   "parent": "",
+   "pivot": [
+    5,
+    2,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      40,
+      16
+     ],
+     "from": [
+      -1,
+      -2,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "right_leg",
+   "parent": "",
+   "pivot": [
+    -1.9,
+    12,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      16
+     ],
+     "from": [
+      -2,
+      0,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_leg",
+   "parent": "",
+   "pivot": [
+    1.9,
+    12,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      16
+     ],
+     "from": [
+      -2,
+      0,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "big_mushroom",
+   "parent": "head",
+   "pivot": [
+    1.5,
+    -8,
+    -0.5
+   ],
+   "rotation": [
+    -0.15,
+    0.4,
+    -0.22
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      32
+     ],
+     "from": [
+      -1,
+      -4,
+      -1
+     ],
+     "size": [
+      2,
+      4,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      8,
+      32
+     ],
+     "from": [
+      -3,
+      -6,
+      -3
+     ],
+     "size": [
+      6,
+      2,
+      6
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "small_mushroom",
+   "parent": "head",
+   "pivot": [
+    -2.5,
+    -8,
+    2
+   ],
+   "rotation": [
+    0.2,
+    0.9,
+    0.35
+   ],
+   "cubes": [
+    {
+     "uv": [
+      32,
+      32
+     ],
+     "from": [
+      -1,
+      -2,
+      -1
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      40,
+      32
+     ],
+     "from": [
+      -2,
+      -4,
+      -2
+     ],
+     "size": [
+      4,
+      2,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "back_mushroom",
+   "parent": "head",
+   "pivot": [
+    -1.5,
+    -3,
+    4
+   ],
+   "rotation": [
+    -1.45,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      32,
+      32
+     ],
+     "from": [
+      -1,
+      -2,
+      -1
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      40,
+      32
+     ],
+     "from": [
+      -2,
+      -4,
+      -2
+     ],
+     "size": [
+      4,
+      2,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "shoulder_mushroom",
+   "parent": "right_arm",
+   "pivot": [
+    -1,
+    -2,
+    0
+   ],
+   "rotation": [
+    0.1,
+    0.3,
+    -0.3
+   ],
+   "cubes": [
+    {
+     "uv": [
+      32,
+      32
+     ],
+     "from": [
+      -1,
+      -2,
+      -1
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      40,
+      32
+     ],
+     "from": [
+      -2,
+      -4,
+      -2
+     ],
+     "size": [
+      4,
+      2,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  }
+ ],
+ "preview": {
+  "right_arm": [
+   -1.45,
+   0,
+   0.06
+  ],
+  "left_arm": [
+   -1.6,
+   0,
+   -0.05
+  ]
+ }
+}

@@ -1,0 +1,13 @@
+{
+	"required": false,
+	"minVersion": "0.8",
+	"package": "dev.nsvmobs.compat",
+	"plugin": "dev.nsvmobs.compat.CompatMixinPlugin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"RpgBestiaryMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	}
+}

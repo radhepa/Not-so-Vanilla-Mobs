@@ -1,0 +1,13 @@
+{
+	"schemaVersion": 1,
+	"id": "nsvmobs-gametest",
+	"version": "1.0.0",
+	"name": "Not-So-Vanilla Mobs game tests",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-client-gametest": ["dev.nsvmobs.test.ShowcaseClientTest"]
+	},
+	"depends": {
+		"nsvmobs": "*"
+	}
+}

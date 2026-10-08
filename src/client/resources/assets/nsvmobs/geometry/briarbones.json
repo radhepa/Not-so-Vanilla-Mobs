@@ -1,0 +1,632 @@
+{
+ "texture": [
+  64,
+  64
+ ],
+ "parts": [
+  {
+   "name": "head",
+   "parent": "",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      -4,
+      -8,
+      -4
+     ],
+     "size": [
+      8,
+      8,
+      8
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "hat",
+   "parent": "head",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      32,
+      0
+     ],
+     "from": [
+      -4,
+      -8,
+      -4
+     ],
+     "size": [
+      8,
+      8,
+      8
+     ],
+     "inflate": 0.5,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "body",
+   "parent": "",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      16,
+      16
+     ],
+     "from": [
+      -4,
+      0,
+      -2
+     ],
+     "size": [
+      8,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_arm",
+   "parent": "",
+   "pivot": [
+    -5,
+    2,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      40,
+      16
+     ],
+     "from": [
+      -1,
+      -2,
+      -1
+     ],
+     "size": [
+      2,
+      12,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_arm",
+   "parent": "",
+   "pivot": [
+    5,
+    2,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      40,
+      16
+     ],
+     "from": [
+      -1,
+      -2,
+      -1
+     ],
+     "size": [
+      2,
+      12,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "right_leg",
+   "parent": "",
+   "pivot": [
+    -2,
+    12,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      16
+     ],
+     "from": [
+      -1,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      12,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_leg",
+   "parent": "",
+   "pivot": [
+    2,
+    12,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      16
+     ],
+     "from": [
+      -1,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      12,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "skull_sprout",
+   "parent": "head",
+   "pivot": [
+    -2,
+    -8.5,
+    -1
+   ],
+   "rotation": [
+    0.12,
+    0.785,
+    -0.15
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      32
+     ],
+     "from": [
+      -2.5,
+      -5,
+      0
+     ],
+     "size": [
+      5,
+      5,
+      0
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      32
+     ],
+     "from": [
+      0,
+      -5,
+      -2.5
+     ],
+     "size": [
+      0,
+      5,
+      5
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "skull_sprout_big",
+   "parent": "head",
+   "pivot": [
+    2,
+    -8.5,
+    1.5
+   ],
+   "rotation": [
+    -0.1,
+    0.5,
+    0.22
+   ],
+   "cubes": [
+    {
+     "uv": [
+      10,
+      32
+     ],
+     "from": [
+      -3,
+      -6,
+      0
+     ],
+     "size": [
+      6,
+      6,
+      0
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      10,
+      32
+     ],
+     "from": [
+      0,
+      -6,
+      -3
+     ],
+     "size": [
+      0,
+      6,
+      6
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_briar",
+   "parent": "right_arm",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      48,
+      16
+     ],
+     "from": [
+      -2,
+      -2.5,
+      -2
+     ],
+     "size": [
+      4,
+      3,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      -3,
+      -2,
+      -0.5
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      -0.5,
+      -3.5,
+      0.5
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      0.5,
+      -1.5,
+      -3
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      -1.5,
+      -0.5,
+      2
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      -3,
+      -0.5,
+      1
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_briar",
+   "parent": "left_arm",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      48,
+      16
+     ],
+     "from": [
+      -2,
+      -2.5,
+      -2
+     ],
+     "size": [
+      4,
+      3,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      2,
+      -2,
+      -0.5
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      -0.5,
+      -3.5,
+      0.5
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      -1.5,
+      -1.5,
+      -3
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      0.5,
+      -0.5,
+      2
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      48,
+      23
+     ],
+     "from": [
+      2,
+      -0.5,
+      1
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "hanging_vine",
+   "parent": "body",
+   "pivot": [
+    1,
+    5,
+    -2.2
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      22,
+      32
+     ],
+     "from": [
+      -1.5,
+      0,
+      0
+     ],
+     "size": [
+      3,
+      8,
+      0
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  }
+ ]
+}
