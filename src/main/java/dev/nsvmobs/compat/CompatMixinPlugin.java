@@ -8,7 +8,11 @@ import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
-/** Applies the RPG add-on mixin only when that add-on is installed. */
+/**
+ * Applies the RPG add-on mixin only when that add-on is installed. Mixins live in the separate
+ * package dev.nsvmobs.compat.mixin: Mixin forbids loading ordinary classes (like RpgFamilies) from
+ * a mixin package.
+ */
 public final class CompatMixinPlugin implements IMixinConfigPlugin {
     @Override public void onLoad(String mixinPackage) {}
     @Override public String getRefMapperConfig() { return null; }

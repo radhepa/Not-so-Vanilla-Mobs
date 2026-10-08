@@ -1,4 +1,7 @@
-package dev.nsvmobs.compat;
+package dev.nsvmobs.compat.mixin;
+
+import dev.nsvmobs.compat.CompatMixinPlugin;
+import dev.nsvmobs.compat.RpgFamilies;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;

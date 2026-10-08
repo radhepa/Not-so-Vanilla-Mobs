@@ -36,6 +36,27 @@ fabricApi {
 	}
 }
 
+// gradlew runClientGameTest -PcompatMods=<folder> also loads the mod jars in <folder> (e.g. the
+// Village Friends instance's mods folder) so the tests run inside the real modpack. Fabric API and
+// this mod's own jar are skipped; the dev build of this mod is used instead.
+def gameTestMods = rootProject.file('build/run/clientGameTest/mods')
+tasks.named('runClientGameTest') {
+	doFirst {
+		def mods = gameTestMods
+		delete(fileTree(mods) { include '*.jar' })
+		if (project.hasProperty('compatMods')) {
+			copy {
+				from(project.property('compatMods')) {
+					include '*.jar'
+					exclude 'fabric-api*', 'not-so-vanilla-mobs*'
+				}
+				into mods
+			}
+			println "Compat run with: " + fileTree(mods).files*.name.sort()
+		}
+	}
+}
+
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"

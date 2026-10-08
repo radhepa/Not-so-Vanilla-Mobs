@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nsvmobs:item/lost_miner_spawn_egg"
+  }
+}

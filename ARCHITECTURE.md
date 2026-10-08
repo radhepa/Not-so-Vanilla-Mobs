@@ -119,6 +119,12 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
   children of those parts.
 - **Everything else** uses `CritterRenderer` with its own `CritterModel` subclass. The renderer's
   lambda copies entity state into `CritterRenderState`; add a field there when a new mob needs one.
+- **Texture variants** (like the Hermit Crab's three shells): pass a list of texture names to
+  `CritterRenderer` and set `state.variant` in the lambda. The art script saves the extra
+  textures with `Model(..., texture_id="<id>_<variant>").save(geometry=False)`.
+- **Hide-and-show poses** (a crab in its shell, a curled-up hedgehog): give the model a part for the
+  alternate shape, or group the parts that disappear under one parent, and toggle `visible` in
+  `setupAnim`.
 - **Animation rule:** vanilla resets every part to its rest pose (from the JSON) before
   `setupAnim`, so animations add offsets (`part.xRot += ...`) on top of the authored pose. Find
   parts by name with `part("tail")` or `optional("ear")`.
@@ -133,7 +139,15 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
   - `compat/RpgBestiaryMixin` remaps paths using each entry's `rpgFamily`.
   - `CompatMixinPlugin` applies the mixin only when `villagefriends_rpg` is loaded, so the mod never
     depends on it.
+- **Mixin package rule:** mixin classes live in `compat/mixin/` and nothing else does. Mixin
+  refuses to load ordinary classes from a mixin package, so helpers like `RpgFamilies` must stay
+  outside it. This mistake crashes the game only once the target mod calls in, which is why the
+  modpack test below exists.
 - **New integrations** go in `compat/`, behind the same kind of is-it-loaded check.
+- **Modpack test:** `gradlew runClientGameTest -PtestHeap=2560m -PcompatMods=<mods folder>` copies
+  the other mods' jars from that folder (e.g. the Village Friends instance's `mods`) into the test
+  run. The showcase test then also checks that the RPG Bestiary files every mob under its
+  catalogue `rpgFamily`. Run it before every release.
 
 ## The art and data pipeline (`tools/`)
 
@@ -197,6 +211,7 @@ Example: a new zombie variant called `bog_mummy`.
    - `gradlew runClientGameTest -PtestHeap=2g`: the showcase test spawns and photographs every
      catalogued mob automatically. Add a behaviour check there if the mob does something
      testable.
+   - Then the same with `-PcompatMods=<Village Friends instance>/mods` to test inside the modpack.
 8. **Docs:** add the mob to the README table.
 
 ## Minecraft 26.3 notes

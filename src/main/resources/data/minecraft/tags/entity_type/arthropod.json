@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "nsvmobs:dune_scorpion"
+    "nsvmobs:dune_scorpion",
+    "nsvmobs:hermit_crab"
   ]
 }

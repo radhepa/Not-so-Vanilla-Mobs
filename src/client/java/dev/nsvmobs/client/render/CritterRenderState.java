@@ -13,4 +13,6 @@ public class CritterRenderState extends LivingEntityRenderState {
     public boolean aggressive;
     /** 0..1 progress of a tongue lash (0 = mouth closed). */
     public float lash;
+    /** Which texture variant to draw (index into the renderer's texture list). */
+    public int variant;
 }

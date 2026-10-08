@@ -1,6 +1,7 @@
 package dev.nsvmobs.client;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import dev.nsvmobs.NsvEntities;
@@ -9,6 +10,9 @@ import dev.nsvmobs.client.model.CapybaraModel;
 import dev.nsvmobs.client.model.DuneScorpionModel;
 import dev.nsvmobs.client.model.Geometry;
 import dev.nsvmobs.client.model.GloomwingModel;
+import dev.nsvmobs.client.model.GlowmothModel;
+import dev.nsvmobs.client.model.HedgehogModel;
+import dev.nsvmobs.client.model.HermitCrabModel;
 import dev.nsvmobs.client.model.MossbackTortoiseModel;
 import dev.nsvmobs.client.model.WyrmlingModel;
 import dev.nsvmobs.client.render.CritterRenderer;
@@ -44,8 +48,10 @@ public final class NsvMobsClient implements ClientModInitializer {
         // with its own model class. The lambda copies whatever entity state the model animates from.
         renderer(NsvEntities.SPORELING, ctx -> new ZombieVariantRenderer(ctx, "sporeling"));
         renderer(NsvEntities.FROSTBITTEN, ctx -> new ZombieVariantRenderer(ctx, "frostbitten"));
+        renderer(NsvEntities.LOST_MINER, ctx -> new ZombieVariantRenderer(ctx, "lost_miner"));
         renderer(NsvEntities.BRIARBONES, ctx -> new SkeletonVariantRenderer(ctx, "briarbones"));
         renderer(NsvEntities.GRAVEWARDEN, ctx -> new SkeletonVariantRenderer(ctx, "gravewarden"));
+        renderer(NsvEntities.SOULPYRE, ctx -> new SkeletonVariantRenderer(ctx, "soulpyre"));
         renderer(NsvEntities.BOG_LURKER, ctx -> new CritterRenderer<>(ctx, "bog_lurker", BogLurkerModel::new, 0.8F, (e, s) -> {
             s.lurking = e.isLurking();
             int lash = e.lashTicks();
@@ -59,6 +65,15 @@ public final class NsvMobsClient implements ClientModInitializer {
             s.hiding = e.isHiding();
         }));
         renderer(NsvEntities.CAPYBARA, ctx -> new CritterRenderer<>(ctx, "capybara", CapybaraModel::new, 0.6F, (e, s) -> {}));
+        renderer(NsvEntities.GLOWMOTH, ctx -> new CritterRenderer<>(ctx, "glowmoth", GlowmothModel::new, 0.3F, (e, s) -> {}));
+        renderer(NsvEntities.HERMIT_CRAB, ctx -> new CritterRenderer<>(ctx, "hermit_crab", HermitCrabModel::new, 0.3F, (e, s) -> {
+            s.variant = e.shell();
+            s.hiding = e.isHiding();
+        }, List.of("hermit_crab", "hermit_crab_whelk", "hermit_crab_snail")));
+        renderer(NsvEntities.HEDGEHOG, ctx -> new CritterRenderer<>(ctx, "hedgehog", HedgehogModel::new, 0.25F, (e, s) -> {
+            s.hiding = e.isCurled();
+            s.sitting = e.isInSittingPose();
+        }));
         renderer(NsvEntities.WYRMLING, ctx -> new CritterRenderer<>(ctx, "wyrmling", WyrmlingModel::new, 0.4F, (e, s) -> {
             s.sitting = e.isInSittingPose();
             s.flying = e.isFlying();

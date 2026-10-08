@@ -6,8 +6,13 @@ import dev.nsvmobs.entity.Capybara;
 import dev.nsvmobs.entity.DuneScorpion;
 import dev.nsvmobs.entity.Frostbitten;
 import dev.nsvmobs.entity.Gloomwing;
+import dev.nsvmobs.entity.Glowmoth;
 import dev.nsvmobs.entity.Gravewarden;
+import dev.nsvmobs.entity.Hedgehog;
+import dev.nsvmobs.entity.HermitCrab;
+import dev.nsvmobs.entity.LostMiner;
 import dev.nsvmobs.entity.MossbackTortoise;
+import dev.nsvmobs.entity.Soulpyre;
 import dev.nsvmobs.entity.Sporeling;
 import dev.nsvmobs.entity.Wyrmling;
 import dev.nsvmobs.entity.WyrmlingEmber;
@@ -52,6 +57,14 @@ public final class NsvEntities {
             .rpgFamily("zombie")
             .register();
 
+    public static final EntityType<LostMiner> LOST_MINER = MobEntry.builder("lost_miner", LostMiner::new, MobCategory.MONSTER)
+            .size(0.6F, 1.95F, 1.74F).type(t -> t.passengerAttachments(2.0125F).ridingOffset(-0.7F))
+            .attributes(LostMiner::createAttributes)
+            .spawnRule(LostMiner::checkSpawnRules)              // below y 0 only
+            .spawnsIn(BiomeSelectors.foundInOverworld(), 25, 1, 2)
+            .rpgFamily("zombie")
+            .register();
+
     // -- skeleton variants -----------------------------------------------------------------------
     public static final EntityType<Briarbones> BRIARBONES = MobEntry.builder("briarbones", Briarbones::new, MobCategory.MONSTER)
             .size(0.6F, 1.99F, 1.74F).type(t -> t.ridingOffset(-0.7F))
@@ -66,6 +79,14 @@ public final class NsvEntities {
             .attributes(Gravewarden::createAttributes)
             .spawnRule(Monster::checkMonsterSpawnRules)
             .spawnsIn(15, 1, 1, Biomes.DARK_FOREST, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA, Biomes.TAIGA, Biomes.PALE_GARDEN)
+            .rpgFamily("skeleton")
+            .register();
+
+    public static final EntityType<Soulpyre> SOULPYRE = MobEntry.builder("soulpyre", Soulpyre::new, MobCategory.MONSTER)
+            .size(0.6F, 1.99F, 1.74F).type(t -> t.ridingOffset(-0.7F).fireImmune())
+            .attributes(Soulpyre::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(40, 1, 3, Biomes.SOUL_SAND_VALLEY)
             .rpgFamily("skeleton")
             .register();
 
@@ -107,12 +128,34 @@ public final class NsvEntities {
             .spawnsIn(8, 2, 4, Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.SAVANNA, Biomes.SPARSE_JUNGLE, Biomes.RIVER)
             .register();
 
+    public static final EntityType<Glowmoth> GLOWMOTH = MobEntry.builder("glowmoth", Glowmoth::new, MobCategory.CREATURE)
+            .size(0.7F, 0.6F, 0.4F).type(t -> t.clientTrackingRange(10))
+            .attributes(Glowmoth::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(6, 1, 3, Biomes.FLOWER_FOREST, Biomes.MEADOW, Biomes.FOREST, Biomes.BIRCH_FOREST,
+                    Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.CHERRY_GROVE)
+            .register();
+
+    public static final EntityType<HermitCrab> HERMIT_CRAB = MobEntry.builder("hermit_crab", HermitCrab::new, MobCategory.CREATURE)
+            .size(0.5F, 0.45F, 0.3F).type(t -> t.clientTrackingRange(10))
+            .attributes(HermitCrab::createAttributes)
+            .spawnRule(HermitCrab::checkSpawnRules)
+            .spawnsIn(8, 2, 4, Biomes.BEACH, Biomes.STONY_SHORE, Biomes.MANGROVE_SWAMP)
+            .register();
+
     // -- pets -------------------------------------------------------------------------------------
     public static final EntityType<Wyrmling> WYRMLING = MobEntry.builder("wyrmling", Wyrmling::new, MobCategory.CREATURE)
             .size(0.6F, 0.6F, 0.45F).type(EntityType.Builder::fireImmune)
             .attributes(Wyrmling::createAttributes)
             .spawnRule(Wyrmling::checkSpawnRules)
             .spawnsIn(3, 1, 2, Biomes.STONY_PEAKS, Biomes.JAGGED_PEAKS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_FOREST)
+            .register();
+
+    public static final EntityType<Hedgehog> HEDGEHOG = MobEntry.builder("hedgehog", Hedgehog::new, MobCategory.CREATURE)
+            .size(0.45F, 0.4F, 0.3F)
+            .attributes(Hedgehog::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(5, 1, 2, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.FLOWER_FOREST, Biomes.MEADOW, Biomes.PLAINS)
             .register();
 
     // -- projectiles and other non-mob entities -------------------------------------------------

@@ -1,0 +1,632 @@
+{
+ "texture": [
+  64,
+  64
+ ],
+ "parts": [
+  {
+   "name": "body",
+   "parent": "",
+   "pivot": [
+    0,
+    21,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      36,
+      0
+     ],
+     "from": [
+      -3,
+      -2,
+      -4
+     ],
+     "size": [
+      6,
+      4,
+      8
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "quills",
+   "parent": "body",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      17
+     ],
+     "from": [
+      -3.5,
+      -3,
+      -3.5
+     ],
+     "size": [
+      7,
+      4,
+      8
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      30,
+      40
+     ],
+     "from": [
+      -2.5,
+      -4,
+      -2.5
+     ],
+     "size": [
+      5,
+      1,
+      6
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      52,
+      40
+     ],
+     "from": [
+      -2.5,
+      -2.5,
+      4.5
+     ],
+     "size": [
+      5,
+      3,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "quill_flare",
+   "parent": "quills",
+   "pivot": [
+    0,
+    -1.5,
+    5
+   ],
+   "rotation": [
+    -0.55,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      6,
+      55
+     ],
+     "from": [
+      -3,
+      -3,
+      0
+     ],
+     "size": [
+      6,
+      3,
+      0
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "quill_crest",
+   "parent": "quills",
+   "pivot": [
+    0,
+    -4,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      18,
+      40
+     ],
+     "from": [
+      0,
+      -1.5,
+      -1.5
+     ],
+     "size": [
+      0,
+      2,
+      6
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "",
+   "pivot": [
+    0,
+    20,
+    -3.5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      48
+     ],
+     "from": [
+      -3,
+      -2,
+      -3
+     ],
+     "size": [
+      6,
+      4,
+      3
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      34,
+      48
+     ],
+     "from": [
+      -3.5,
+      -3,
+      -1.5
+     ],
+     "size": [
+      7,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      55
+     ],
+     "from": [
+      -4,
+      -2.5,
+      -2
+     ],
+     "size": [
+      1,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      55
+     ],
+     "from": [
+      3,
+      -2.5,
+      -2
+     ],
+     "size": [
+      1,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "snout",
+   "parent": "head",
+   "pivot": [
+    0,
+    1,
+    -3
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      54,
+      17
+     ],
+     "from": [
+      -1,
+      -1,
+      -2
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      18,
+      55
+     ],
+     "from": [
+      -1,
+      -1,
+      -2.9
+     ],
+     "size": [
+      2,
+      1,
+      1
+     ],
+     "inflate": 0.1,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_front_leg",
+   "parent": "",
+   "pivot": [
+    -2,
+    22,
+    -2
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      52,
+      48
+     ],
+     "from": [
+      -1,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_front_leg",
+   "parent": "",
+   "pivot": [
+    2,
+    22,
+    -2
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      52,
+      48
+     ],
+     "from": [
+      -1,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "right_hind_leg",
+   "parent": "",
+   "pivot": [
+    -2,
+    22,
+    2.5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      52,
+      48
+     ],
+     "from": [
+      -1,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_hind_leg",
+   "parent": "",
+   "pivot": [
+    2,
+    22,
+    2.5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      52,
+      48
+     ],
+     "from": [
+      -1,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      2,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "ball",
+   "parent": "",
+   "pivot": [
+    0,
+    21,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      30,
+      17
+     ],
+     "from": [
+      -3,
+      -3,
+      -3
+     ],
+     "size": [
+      6,
+      6,
+      6
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      22,
+      29
+     ],
+     "from": [
+      -3.5,
+      -2,
+      -2
+     ],
+     "size": [
+      7,
+      4,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      29
+     ],
+     "from": [
+      -2,
+      -2,
+      -3.5
+     ],
+     "size": [
+      4,
+      4,
+      7
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      18,
+      48
+     ],
+     "from": [
+      -2,
+      -4,
+      -2
+     ],
+     "size": [
+      4,
+      1,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      0,
+      -4.5,
+      -4.5
+     ],
+     "size": [
+      0,
+      8,
+      9
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      44,
+      29
+     ],
+     "from": [
+      -4.5,
+      -4.5,
+      0
+     ],
+     "size": [
+      9,
+      8,
+      0
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "ball_spikes",
+   "parent": "ball",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0.7854,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      18,
+      0
+     ],
+     "from": [
+      0,
+      -4.5,
+      -4.5
+     ],
+     "size": [
+      0,
+      8,
+      9
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      40
+     ],
+     "from": [
+      -4.5,
+      -4.5,
+      0
+     ],
+     "size": [
+      9,
+      8,
+      0
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  }
+ ]
+}

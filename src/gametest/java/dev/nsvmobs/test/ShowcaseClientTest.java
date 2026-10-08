@@ -3,6 +3,8 @@ package dev.nsvmobs.test;
 import java.util.List;
 
 import dev.nsvmobs.NsvEntities;
+import dev.nsvmobs.entity.Hedgehog;
+import dev.nsvmobs.entity.HermitCrab;
 import dev.nsvmobs.entity.MossbackTortoise;
 import dev.nsvmobs.entity.Wyrmling;
 import dev.nsvmobs.registry.MobEntry;
@@ -11,6 +13,7 @@ import dev.nsvmobs.registry.MobRegistry;
 import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -78,6 +81,7 @@ public class ShowcaseClientTest implements FabricClientGameTest {
                 check(found == 1, m.id + " spawned (found " + found + ")");
                 check(m.spawnEgg() != null, m.id + " has a spawn egg");
             }
+            compatChecks();
             ctx.takeScreenshot("nsvmobs-01-lineup");
             server.runCommand("tp @a 0 -56 -10 0 25");
             ctx.waitTicks(10);
@@ -117,11 +121,84 @@ public class ShowcaseClientTest implements FabricClientGameTest {
                 check(w.isOrderedToSit(), "a freshly tamed wyrmling sits");
                 player.setGameMode(GameType.CREATIVE);
             });
+            // the hermit crab ducks into its shell when hurt; the hedgehog curls up, and tames with sweet berries
+            server.runOnServer(srv -> {
+                ServerLevel level = srv.overworld();
+                HermitCrab crab = first(level, NsvEntities.HERMIT_CRAB);
+                check(crab.shell() >= 0 && crab.shell() < HermitCrab.SHELLS, "crab has a valid shell");
+                crab.hurtServer(level, level.damageSources().generic(), 1.0F);
+                check(crab.isHiding(), "a hurt hermit crab hides");
+                Hedgehog hog = first(level, NsvEntities.HEDGEHOG);
+                ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+                player.setGameMode(GameType.SURVIVAL);
+                for (int i = 0; i < 60 && !hog.isTame(); i++) {
+                    player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.SWEET_BERRIES, 8));
+                    hog.mobInteract(player, InteractionHand.MAIN_HAND);
+                }
+                check(hog.isTame() && hog.isOwnedBy(player), "sweet berries tame a hedgehog");
+                player.setGameMode(GameType.CREATIVE);
+                hog.hurtServer(level, level.damageSources().generic(), 1.0F);
+                check(hog.isCurled(), "a hurt hedgehog curls into a ball");
+            });
             ctx.waitTicks(10);
             server.runOnServer(srv -> check(first(srv.overworld(), NsvEntities.DUNE_SCORPION).isBurrowed(), "scorpion burrowed"));
             server.runCommand("tp @a 0 -55 -6 0 40");
             ctx.waitTicks(10);
             ctx.takeScreenshot(String.format("nsvmobs-%02d-sheared-burrowed-tamed", mobs.size() + 3));
+
+            // a lost miner walled in with stone digs through to reach a villager 5 blocks away
+            for (String cmd : List.of("fill 30 -61 -2 38 -57 2 stone", "fill 31 -60 0 31 -59 0 air", "fill 36 -60 0 36 -59 0 air",
+                    "summon nsvmobs:lost_miner 31.5 -60 0.5 {PersistenceRequired:1b}",
+                    "summon minecraft:villager 36.5 -60 0.5 {NoAI:1b,PersistenceRequired:1b}")) {
+                server.runCommand(cmd);
+            }
+            ctx.waitTicks(5);
+            // it spotted the villager before the wall went up (zombies forget unseen targets; miners don't)
+            server.runOnServer(srv -> {
+                ServerLevel level = srv.overworld();
+                AABB cell = new AABB(29, -62, -3, 39, -55, 3);
+                var miner = level.getEntities(NsvEntities.LOST_MINER, cell, e -> true).getFirst();
+                var villager = level.getEntities(net.minecraft.world.entity.EntityTypes.VILLAGER, cell, e -> true).getFirst();
+                miner.setTarget(villager);
+            });
+            ctx.waitTicks(500);
+            boolean dug = server.computeOnServer(srv -> {
+                ServerLevel level = srv.overworld();
+                int open = 0;
+                for (int x = 32; x <= 35; x++) {
+                    if (level.getBlockState(new BlockPos(x, -60, 0)).isAir() || level.getBlockState(new BlockPos(x, -59, 0)).isAir()) open++;
+                }
+                return open >= 2;
+            });
+            check(dug, "a walled-in lost miner tunnels toward its target");
+            server.runCommand("fill 30 -58 -2 38 -57 2 air");   // lift the lid to show the tunnel
+            server.runCommand("tp @a 33.5 -54 0.5 90 90");   // straight down onto the dug row
+            ctx.waitTicks(10);
+            ctx.takeScreenshot(String.format("nsvmobs-%02d-lost-miner-tunnel", mobs.size() + 4));
+        }
+    }
+
+    /**
+     * Only in a modpack run (-PcompatMods=...): with the Village Friends RPG add-on loaded, its
+     * Bestiary must file each mob under the family the catalogue gives it, and nothing else.
+     */
+    static void compatChecks() {
+        var loader = net.fabricmc.loader.api.FabricLoader.getInstance();
+        System.out.println("[nsvmobs-test] villagefriends loaded: " + loader.isModLoaded("villagefriends")
+                + ", villagefriends_rpg loaded: " + loader.isModLoaded("villagefriends_rpg"));
+        if (!loader.isModLoaded("villagefriends_rpg")) return;
+        try {
+            var ofMob = Class.forName("dev.villagefriends.rpg.Bestiary").getMethod("ofMob", String.class);
+            for (MobEntry<?> m : MobRegistry.all()) {
+                Object family = ofMob.invoke(null, m.id);
+                String id = family == null ? null : (String) family.getClass().getMethod("id").invoke(family);
+                check(java.util.Objects.equals(id, m.rpgFamily()), "RPG Bestiary files " + m.id + " under " + id + ", expected " + m.rpgFamily());
+            }
+            Object zombie = ofMob.invoke(null, "zombie");
+            check(zombie != null && "zombie".equals(zombie.getClass().getMethod("id").invoke(zombie)), "vanilla zombies still map to Zombies");
+            System.out.println("[nsvmobs-test] RPG Bestiary compat OK for " + MobRegistry.all().size() + " mobs");
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError("couldn't query the RPG Bestiary", e);
         }
     }
 
