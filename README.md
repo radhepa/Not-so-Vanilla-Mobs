@@ -1,7 +1,8 @@
 # Not-So-Vanilla Mobs
 
-Twenty-five new mobs for **Minecraft 26.3** (Fabric): three zombie variants, four skeleton variants,
-eight other hostile creatures, six friendly animals, one neutral animal and three pets.
+Thirty-five new mobs for **Minecraft 26.3** (Fabric): three zombie variants, four skeleton variants,
+eight other hostile creatures, ten challengers (big, rare monsters with attacks you can learn to
+beat), six friendly animals, one neutral animal and three pets.
 
 | Mob | Kind | Where to find it | What it does |
 |-----|------|------------------|--------------|
@@ -30,10 +31,36 @@ eight other hostile creatures, six friendly animals, one neutral animal and thre
 | **Penguin** | friendly | Snowy Beach, frozen oceans, Frozen River | Belly-slides fast over ice and snow, swims fast, keeps clear of polar bears. Fluffy grey chicks. Breeds with raw fish. |
 | **Wild Boar** | neutral | taigas, Forest, Dark Forest | Leaves you alone until you hurt it or a piglet; then the whole group charges with a big knockback. Striped piglets. Breeds with mushrooms. |
 | **Otter** | pet | River, Frozen River | Tame it with raw cod or salmon. Floats on its back, gives you Dolphin's Grace while you swim together, and fishes things up for you. |
+| **Broodmother** | challenger | deep caves below y 0, Dark Forest | A spider queen twice a spider's size. Climbs walls, spits webs that stick you in place, poisons, and sheds broods of cave spiders as she's hurt. |
+| **Sandmaw** | challenger | Desert | A giant worm that swims unseen under the sand, bursts up under you and bites, then dives again. Can't be hurt underground; can't reach you on hard ground. |
+| **Cinderhulk** | challenger | Basalt Deltas | A basalt brute that walks on lava. Slams the ground to send out a ring of fire (jump it), lobs magma, and enrages when badly hurt. |
+| **Crag Troll** | challenger | Windswept Hills, Stony and Jagged Peaks | Hurls boulders, punches you off cliffs, and regenerates unless you burn it. Carries emeralds. |
+| **Prowler** | challenger | jungles | A black panther that stalks you silently and pounces from ten blocks to pin and maul you. A raised shield leaves it dazed. |
+| **Stormcaller** | challenger | taigas, Dark Forest, Windswept Hills | An illager that marks the ground under you with sparks and calls lightning down on the marks. Blasts you away with wind if you get close. |
+| **Brineclaw** | challenger | Beach, Stony Shore | A giant crab whose front shell turns most blows. It turns slowly: get round it. Its crusher claw grabs and flings you. |
+| **Rimewraith** | challenger | Frozen and Jagged Peaks, Snowy Slopes, Ice Spikes, Grove | A floating ice spectre that freezes you if you come near (wear leather), hurls ice shards and freezes water. Fire hurts it double. |
+| **Riftstalker** | challenger | the outer End | Vanishes and steps out of a rift behind you to slash. Hit it as it steps out and it staggers. Blinks away from arrows. |
+| **Oregorger** | challenger | deep caves below y 0 | A heavily armoured beast that curls into a ball and bowls into you. Make it hit a wall and it's stunned and defenceless. Eats ore and gives it back when it dies. |
 
-All twenty-five have spawn eggs in the Spawn Eggs creative tab. The full design is in [DESIGN.md](DESIGN.md).
+All thirty-five have spawn eggs in the Spawn Eggs creative tab. The full design is in [DESIGN.md](DESIGN.md).
 More mobs are on the way; [ARCHITECTURE.md](ARCHITECTURE.md) explains how the mod is put together
 and walks through adding one.
+
+## Beating the challengers
+Each challenger warns you before its big attack, and each has a weakness:
+
+| Challenger | Watch for | Beat it by |
+|------------|-----------|------------|
+| Broodmother | She rears up with her front legs in the air: a web is coming | Fighting in the open; save damage for the cave spider broods at 2/3 and 1/3 health |
+| Sandmaw | The sand trembling under you | Moving off the shaking spot; standing on hard ground; hitting it while it's surfaced |
+| Cinderhulk | Both fists going up with a roar | Jumping the ring of fire; powder snow (freezing hurts it 5x) |
+| Crag Troll | A boulder lifted overhead | Fire: burning stops its healing for 10 seconds; staying away from cliff edges |
+| Prowler | A growl, a low crouch and a lashing tail | Raising a shield as it leaps (it's dazed for 3 seconds) |
+| Stormcaller | Sparks crackling on the ground | Moving out of the marks; closing in between casts |
+| Brineclaw | Its big claw rising | Circling to its side or back; tridents |
+| Rimewraith | Frost creeping over your screen | Wearing any leather armour; fire |
+| Riftstalker | A swirling rift behind you | Turning round and hitting it as it steps out |
+| Oregorger | It curls into a ball and revs | Dodging so it rolls into a wall, then hitting it while it's stunned |
 
 ## The Wyrmling
 - Feed a wild Wyrmling **blaze powder**; each feeding has a 1 in 4 chance to tame it.
@@ -63,12 +90,13 @@ and walks through adding one.
   Friends guards and pets fight them like any other.
 - **Village Friends RPG add-on:** when it's installed, its Bestiary counts Sporelings,
   Frostbitten and Lost Miners as Zombies, Briarbones, Gravewardens, Soulpyres and Sculkbones as
-  Skeletons, Dune Scorpions and Dripfangs as Spiders, Anglers as Guardians and Driftcaps as
-  Endermen.
+  Skeletons, Dune Scorpions, Dripfangs, Broodmothers and Brineclaws as Spiders, Anglers as
+  Guardians, Driftcaps and Riftstalkers as Endermen, Sandmaws as Vermin, Cinderhulks as Blazes and
+  Stormcallers as Illagers.
   The other mobs earn normal kill XP. Without the add-on, that hook stays switched off.
 
 ## Install
-Put `not-so-vanilla-mobs-1.2.0.jar` in your `mods` folder next to Fabric API. It's tested together
+Put `not-so-vanilla-mobs-1.3.0.jar` in your `mods` folder next to Fabric API. It's tested together
 with Village Friends 2.26 and its RPG add-on as one modpack.
 
 ## Building

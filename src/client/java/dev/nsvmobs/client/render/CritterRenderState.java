@@ -24,4 +24,17 @@ public class CritterRenderState extends LivingEntityRenderState {
     public float lash;
     /** Which texture variant to draw (index into the renderer's texture list). */
     public int variant;
+    /** Not drawn at all, shadow included (a sandmaw underground, a riftstalker inside its rift). */
+    public boolean hidden;
+    /** The mob's current action or phase (each mob class defines its own numbers), and how long it's been at it (ticks). */
+    public int mode;
+    public float modeAge;
+    /** The frame's partial tick, for extract lambdas that need it. */
+    public float partialTick;
+    /** 0..1 progress of a melee swing (0 = not swinging). */
+    public float swing;
+    /** Badly hurt and furious (cinderhulk). */
+    public boolean enraged;
+    /** Holding something overhead (crag troll's boulder) or rearing up (broodmother about to spit). */
+    public boolean holding;
 }

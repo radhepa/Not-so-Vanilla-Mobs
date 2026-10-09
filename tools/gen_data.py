@@ -17,7 +17,8 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "mobs"))
 
 # Names for entities that aren't mobs (no mob script).
-EXTRA_LANG = {"entity.nsvmobs.wyrmling_ember": "Wyrmling Ember"}
+EXTRA_LANG = {"entity.nsvmobs.wyrmling_ember": "Wyrmling Ember", "entity.nsvmobs.boulder": "Boulder",
+              "entity.nsvmobs.ice_shard": "Ice Shard", "entity.nsvmobs.web_glob": "Web Glob"}
 
 
 def mob_ids():

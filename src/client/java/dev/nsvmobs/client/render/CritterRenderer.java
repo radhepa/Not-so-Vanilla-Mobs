@@ -57,6 +57,13 @@ public class CritterRenderer<T extends Mob> extends MobRenderer<T, CritterRender
     public void extractRenderState(T entity, CritterRenderState state, float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
         state.aggressive = entity.isAggressive();
+        state.swing = entity.getSwingAnimation(partialTicks);
+        state.partialTick = partialTicks;
         this.extract.accept(entity, state);
+    }
+
+    @Override
+    protected float getShadowRadius(CritterRenderState state) {
+        return state.hidden ? 0.0F : super.getShadowRadius(state);
     }
 }

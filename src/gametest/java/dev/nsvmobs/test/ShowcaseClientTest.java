@@ -128,7 +128,7 @@ public class ShowcaseClientTest implements FabricClientGameTest {
             for (int i = 0; i < mobs.size(); i++) {
                 double[] p = spot(i);
                 boolean tall = mobs.get(i).type.getHeight() > 1.5F;
-                double dist = tall ? 3.6 : 2.6;
+                double dist = Math.max(tall ? 3.6 : 2.6, Math.max(mobs.get(i).type.getHeight() * 1.45, mobs.get(i).type.getWidth() * 1.9));
                 server.runCommand(String.format("tp @a %.2f %.2f %.2f 22 %d", p[0] + dist * 0.42, FLOOR, p[2] - dist, tall ? 8 : 28));
                 ctx.waitTicks(8);
                 shoot(ctx, String.format("nsvmobs-%02d-%s", i + 3, mobs.get(i).id));
@@ -338,7 +338,9 @@ public class ShowcaseClientTest implements FabricClientGameTest {
             server.runCommand("fill 30 -58 -2 38 -57 2 air");   // lift the lid to show the tunnel
             server.runCommand("tp @a 33.5 -54 0.5 90 90");   // straight down onto the dug row
             ctx.waitTicks(10);
-            shoot(ctx, String.format("nsvmobs-%02d-lost-miner-tunnel", shot));
+            shoot(ctx, String.format("nsvmobs-%02d-lost-miner-tunnel", shot++));
+
+            ChallengerScenes.run(ctx, world, shot);
         }
     }
 

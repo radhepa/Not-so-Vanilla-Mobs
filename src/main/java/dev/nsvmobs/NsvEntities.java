@@ -1,6 +1,11 @@
 package dev.nsvmobs;
 
 import dev.nsvmobs.entity.Angler;
+import dev.nsvmobs.entity.Boulder;
+import dev.nsvmobs.entity.Brineclaw;
+import dev.nsvmobs.entity.Broodmother;
+import dev.nsvmobs.entity.Cinderhulk;
+import dev.nsvmobs.entity.CragTroll;
 import dev.nsvmobs.entity.BogLurker;
 import dev.nsvmobs.entity.Briarbones;
 import dev.nsvmobs.entity.Capybara;
@@ -13,16 +18,24 @@ import dev.nsvmobs.entity.Glowmoth;
 import dev.nsvmobs.entity.Gravewarden;
 import dev.nsvmobs.entity.Hedgehog;
 import dev.nsvmobs.entity.HermitCrab;
+import dev.nsvmobs.entity.IceShard;
 import dev.nsvmobs.entity.LostMiner;
 import dev.nsvmobs.entity.Meerkat;
 import dev.nsvmobs.entity.MossbackTortoise;
+import dev.nsvmobs.entity.Oregorger;
 import dev.nsvmobs.entity.Otter;
 import dev.nsvmobs.entity.Penguin;
+import dev.nsvmobs.entity.Prowler;
+import dev.nsvmobs.entity.Riftstalker;
+import dev.nsvmobs.entity.Rimewraith;
+import dev.nsvmobs.entity.Sandmaw;
 import dev.nsvmobs.entity.Scarecrow;
 import dev.nsvmobs.entity.Sculkbones;
 import dev.nsvmobs.entity.Soulpyre;
 import dev.nsvmobs.entity.Sporeling;
+import dev.nsvmobs.entity.Stormcaller;
 import dev.nsvmobs.entity.Vulture;
+import dev.nsvmobs.entity.WebGlob;
 import dev.nsvmobs.entity.WildBoar;
 import dev.nsvmobs.entity.Wyrmling;
 import dev.nsvmobs.entity.WyrmlingEmber;
@@ -174,6 +187,95 @@ public final class NsvEntities {
             .rpgFamily("enderman")
             .register();
 
+    // -- challengers: big, rare, dangerous hostiles, each with an attack you can learn to beat -----
+    public static final EntityType<Broodmother> BROODMOTHER = MobEntry.builder("broodmother", Broodmother::new, MobCategory.MONSTER)
+            .size(2.2F, 1.3F, 0.9F)
+            .attributes(Broodmother::createAttributes)
+            .spawnRule(Broodmother::checkSpawnRules)            // below y 0, or a Dark Forest floor
+            .spawnsIn(BiomeSelectors.foundInOverworld(), 4, 1, 1)
+            .spawnsIn(8, 1, 1, Biomes.DARK_FOREST)
+            .rpgFamily("spider")
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Sandmaw> SANDMAW = MobEntry.builder("sandmaw", Sandmaw::new, MobCategory.MONSTER)
+            .size(1.5F, 3.0F, 2.6F)
+            .attributes(Sandmaw::createAttributes)
+            .spawnRule(Sandmaw::checkSpawnRules)               // open desert sand, day or night
+            .spawnsIn(6, 1, 1, Biomes.DESERT)
+            .rpgFamily("vermin")
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Cinderhulk> CINDERHULK = MobEntry.builder("cinderhulk", Cinderhulk::new, MobCategory.MONSTER)
+            .size(1.8F, 2.8F, 2.3F).type(EntityType.Builder::fireImmune)
+            .attributes(Cinderhulk::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(6, 1, 1, Biomes.BASALT_DELTAS)
+            .rpgFamily("blaze")
+            .solitary(64)
+            .register();
+
+    public static final EntityType<CragTroll> CRAG_TROLL = MobEntry.builder("crag_troll", CragTroll::new, MobCategory.MONSTER)
+            .size(1.6F, 2.9F, 2.4F)
+            .attributes(CragTroll::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(8, 1, 1, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.STONY_PEAKS, Biomes.JAGGED_PEAKS)
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Prowler> PROWLER = MobEntry.builder("prowler", Prowler::new, MobCategory.MONSTER)
+            .size(1.0F, 1.0F, 0.8F)
+            .attributes(Prowler::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(10, 1, 1, Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE)
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Stormcaller> STORMCALLER = MobEntry.builder("stormcaller", Stormcaller::new, MobCategory.MONSTER)
+            .size(0.6F, 1.95F, 1.62F).type(t -> t.passengerAttachments(2.0F).ridingOffset(-0.6F))
+            .attributes(Stormcaller::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(5, 1, 1, Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA,
+                    Biomes.DARK_FOREST, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_FOREST)
+            .rpgFamily("illager")
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Brineclaw> BRINECLAW = MobEntry.builder("brineclaw", Brineclaw::new, MobCategory.MONSTER)
+            .size(1.8F, 1.0F, 0.7F)
+            .attributes(Brineclaw::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(10, 1, 1, Biomes.BEACH, Biomes.STONY_SHORE)
+            .rpgFamily("spider")
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Rimewraith> RIMEWRAITH = MobEntry.builder("rimewraith", Rimewraith::new, MobCategory.MONSTER)
+            .size(0.8F, 2.2F, 1.9F)
+            .attributes(Rimewraith::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(10, 1, 1, Biomes.FROZEN_PEAKS, Biomes.JAGGED_PEAKS, Biomes.SNOWY_SLOPES, Biomes.ICE_SPIKES, Biomes.GROVE)
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Riftstalker> RIFTSTALKER = MobEntry.builder("riftstalker", Riftstalker::new, MobCategory.MONSTER)
+            .size(0.7F, 2.7F, 2.45F)
+            .attributes(Riftstalker::createAttributes)
+            .spawnRule(Monster::checkMonsterSpawnRules)
+            .spawnsIn(3, 1, 1, Biomes.END_HIGHLANDS, Biomes.END_MIDLANDS, Biomes.END_BARRENS)
+            .rpgFamily("enderman")
+            .solitary(64)
+            .register();
+
+    public static final EntityType<Oregorger> OREGORGER = MobEntry.builder("oregorger", Oregorger::new, MobCategory.MONSTER)
+            .size(1.6F, 1.3F, 0.9F)
+            .attributes(Oregorger::createAttributes)
+            .spawnRule(Oregorger::checkSpawnRules)              // below y 0 only
+            .spawnsIn(BiomeSelectors.foundInOverworld(), 6, 1, 1)
+            .solitary(64)
+            .register();
+
     // -- friendly ---------------------------------------------------------------------------------
     public static final EntityType<MossbackTortoise> MOSSBACK_TORTOISE = MobEntry.builder("mossback_tortoise", MossbackTortoise::new, MobCategory.CREATURE)
             .size(1.2F, 0.9F, 0.6F).type(t -> t.clientTrackingRange(10))
@@ -251,6 +353,16 @@ public final class NsvEntities {
     // -- projectiles and other non-mob entities -------------------------------------------------
     public static final EntityType<WyrmlingEmber> WYRMLING_EMBER = misc("wyrmling_ember",
             EntityType.Builder.<WyrmlingEmber>of(WyrmlingEmber::new, MobCategory.MISC).noLootTable().sized(0.3125F, 0.3125F)
+                    .clientTrackingRange(4).updateInterval(10));
+    /** A Crag Troll's boulder, or a Cinderhulk's chunk of magma. */
+    public static final EntityType<Boulder> BOULDER = misc("boulder",
+            EntityType.Builder.<Boulder>of(Boulder::new, MobCategory.MISC).noLootTable().sized(0.75F, 0.75F)
+                    .clientTrackingRange(6).updateInterval(10));
+    public static final EntityType<IceShard> ICE_SHARD = misc("ice_shard",
+            EntityType.Builder.<IceShard>of(IceShard::new, MobCategory.MISC).noLootTable().sized(0.25F, 0.25F)
+                    .clientTrackingRange(4).updateInterval(10));
+    public static final EntityType<WebGlob> WEB_GLOB = misc("web_glob",
+            EntityType.Builder.<WebGlob>of(WebGlob::new, MobCategory.MISC).noLootTable().sized(0.4F, 0.4F)
                     .clientTrackingRange(4).updateInterval(10));
 
     private static <T extends net.minecraft.world.entity.Entity> EntityType<T> misc(String id, EntityType.Builder<T> builder) {

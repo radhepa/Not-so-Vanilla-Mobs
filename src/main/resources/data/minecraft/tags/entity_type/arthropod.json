@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "nsvmobs:brineclaw",
+    "nsvmobs:broodmother",
     "nsvmobs:dripfang",
     "nsvmobs:dune_scorpion",
     "nsvmobs:hermit_crab"

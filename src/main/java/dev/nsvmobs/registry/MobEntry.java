@@ -15,6 +15,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -25,6 +26,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -44,6 +46,7 @@ public final class MobEntry<T extends Mob> {
     final SpawnPlacements.@Nullable SpawnPredicate<T> spawnRule;
     final List<BiomeSpawn> spawns;
     final @Nullable String rpgFamily;
+    final double solitary;
     Item spawnEgg;
 
     private MobEntry(Builder<T> b, EntityType<T> type) {
@@ -55,6 +58,7 @@ public final class MobEntry<T extends Mob> {
         this.spawnRule = b.spawnRule;
         this.spawns = List.copyOf(b.spawns);
         this.rpgFamily = b.rpgFamily;
+        this.solitary = b.solitary;
     }
 
     public Item spawnEgg() { return this.spawnEgg; }
@@ -74,6 +78,7 @@ public final class MobEntry<T extends Mob> {
         private SpawnPlacements.@Nullable SpawnPredicate<T> spawnRule;
         private final List<BiomeSpawn> spawns = new ArrayList<>();
         private @Nullable String rpgFamily;
+        private double solitary;
 
         private Builder(String id, EntityType.Builder<T> type) {
             this.id = id;
@@ -121,6 +126,15 @@ public final class MobEntry<T extends Mob> {
             return this;
         }
 
+        /**
+         * A loner: it never spawns naturally within {@code radius} blocks of another of its kind
+         * (spawners excepted), so a rare, dangerous mob stays rare.
+         */
+        public Builder<T> solitary(double radius) {
+            this.solitary = radius;
+            return this;
+        }
+
         /** The Village Friends RPG Bestiary family this mob counts toward (e.g. "zombie"). */
         public Builder<T> rpgFamily(String family) {
             this.rpgFamily = family;
@@ -137,6 +151,14 @@ public final class MobEntry<T extends Mob> {
     }
 
     void registerSpawnPlacement() {
-        if (this.spawnRule != null) SpawnPlacements.register(this.type, this.placementType, this.heightmap, this.spawnRule);
+        if (this.spawnRule == null) return;
+        SpawnPlacements.SpawnPredicate<T> rule = this.spawnRule;
+        if (this.solitary > 0) {
+            SpawnPlacements.SpawnPredicate<T> base = rule;
+            double r = this.solitary;
+            rule = (type, level, reason, pos, random) -> base.test(type, level, reason, pos, random)
+                    && (EntitySpawnReason.isSpawner(reason) || level.getEntities(type, new AABB(pos).inflate(r), e -> true).isEmpty());
+        }
+        SpawnPlacements.register(this.type, this.placementType, this.heightmap, rule);
     }
 }

@@ -51,7 +51,9 @@ src/main/java/dev/nsvmobs/
   NsvEntities.java          THE CATALOGUE: one MobEntry per mob (+ non-mob entities like projectiles)
   registry/MobEntry.java    what one mob is: type, attributes, spawn rule, biome spawns, RPG family
   registry/MobRegistry.java turns every entry into attributes, a spawn egg, spawn rules, biome spawns
-  entity/                   one class per mob (behaviour), plus helpers (Griefing, WyrmlingEmber)
+  entity/                   one class per mob (behaviour), plus helpers: Griefing, TemporaryBlocks,
+                            and the projectiles (WyrmlingEmber; MobMissile with Boulder, IceShard,
+                            WebGlob)
   compat/                   optional integrations (Village Friends RPG), applied only if installed
 src/client/java/dev/nsvmobs/client/
   NsvMobsClient.java        model layer per catalogued mob + one renderer line per mob
@@ -60,7 +62,7 @@ src/client/java/dev/nsvmobs/client/
   model/<Mob>Model.java     per-mob animation
   render/                   ZombieVariantRenderer, SkeletonVariantRenderer, CritterRenderer,
                             CritterRenderState, GlowLayer, ScarecrowRenderer (zombie animation
-                            with a daytime pose)
+                            with a daytime pose), StormcallerRenderer (vanilla illager model)
 src/client/resources/assets/nsvmobs/geometry/   generated models (JSON)
 src/main/resources/                             generated textures, lang, loot, tags; fabric.mod.json
 src/gametest/                                   client game test (spawns every catalogued mob)
@@ -84,6 +86,9 @@ public static final EntityType<Sporeling> SPORELING = MobEntry.builder("sporelin
         .register();
 ```
 
+A rare, dangerous mob can add `.solitary(64)`: it then never spawns naturally within 64 blocks of
+another of its kind (every challenger does this).
+
 `register()` creates the entity type and records a `MobEntry`. At startup `MobRegistry.wireUp()`
 goes through every entry and registers:
 - default attributes;
@@ -106,6 +111,17 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
   - **Sounds** reuse vanilla sound events, often pitch-shifted with `getVoicePitch()`.
   - **Burning, undead status and immunities** are vanilla entity type tags in 26.3, not methods.
     Set them through the mob script's `TAGS` (see below).
+  - **Multi-step attacks** (a wind-up, the strike, a recovery) are a small state machine: one synced
+    byte for the current step (`ACTION`, `MODE` or `PHASE`). Each side notes the tick it changed in
+    `onSyncedDataUpdated`, so the model can animate by how long the step has run (`modeAge`).
+    Steps that must always finish once started (a roll, a rift, a stagger) run in `aiStep`, not in a
+    goal, so nothing can interrupt them halfway and they also run on NoAI mobs.
+  - **Telegraphs:** every big attack announces itself with a sound plus a pose or particles before
+    it lands, and has a counter (see DESIGN.md, Challengers).
+  - **Temporary blocks** (a Broodmother's webs) go through `TemporaryBlocks.place`, which removes
+    them again after their time (and all of them when the server stops), whatever happens to the mob.
+  - **Thrown things** extend `MobMissile` (an item-shaped throwable that never hits its thrower's
+    kind; `aimAt` leads a target for the missile's own gravity) and are registered with `misc(...)`.
 - Mobs never change vanilla or other mods' behaviour. No mixins into Minecraft or Village Friends.
 
 ### Client
@@ -120,6 +136,11 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
   children of those parts.
 - **Everything else** uses `CritterRenderer` with its own `CritterModel` subclass. The renderer's
   lambda copies entity state into `CritterRenderState`; add a field there when a new mob needs one.
+  Generic fields cover most needs: `mode` and `modeAge` (a mob's attack step and how long it has
+  run), `swing` (melee swing progress), `holding`, `enraged`, and `hidden` (draw nothing at all,
+  shadow included: a burrowed Sandmaw, a Riftstalker inside its rift).
+- **Illagers** (the Stormcaller) use vanilla `IllagerModel` on this mod's geometry, so the geometry
+  must copy vanilla's illager layout exactly (`arms` for the crossed arms, the hidden `hat`).
 - **Texture variants** (like the Hermit Crab's three shells, or the Penguin's chick and the Wild
   Boar's striped piglet): pass a list of texture names to `CritterRenderer` and set `state.variant`
   in the lambda (e.g. `e.isBaby() ? 1 : 0`). The art script saves the extra
@@ -139,6 +160,9 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
 - **Village Friends RPG add-on:**
   - It identifies mobs by entity path only.
   - `compat/RpgBestiaryMixin` remaps paths using each entry's `rpgFamily`.
+  - The add-on looks families up by vanilla mob path, so a family id that isn't itself a mob
+    (`vermin`, `illager`) is mapped to one of its members in `RpgFamilies` (`silverfish`, `evoker`).
+    Add a line there before using any other such family.
   - `CompatMixinPlugin` applies the mixin only when `villagefriends_rpg` is loaded, so the mod never
     depends on it.
 - **Mixin package rule:** mixin classes live in `compat/mixin/` and nothing else does. Mixin
@@ -243,4 +267,10 @@ Things that differ from older versions and from most tutorials:
 - **Spawn placement:** `SpawnPlacements.register` is public through Fabric's access wideners.
 - **Velocity sync:** to push a player, change their delta movement and set `needsSync = true`.
 - **`/summon` with NBT** skips `finalizeSpawn`, so summoned skeletons and Gravewardens have no gear.
+- **NoAI mobs** still run `aiStep` but no goals and no movement, and `onGround` never updates: give
+  test mobs `OnGround:1b` when a check needs them standing on the ground.
+- **Entity type constants** live in `EntityTypes` (`EntityTypes.CAVE_SPIDER`), not `EntityType`.
+- **Swinging:** mobs swing with `swingForAttack(hand)`; the renderer reads `getSwingAnimation(partialTick)`.
+- **Shields:** when a target's shield blocks a melee hit, the attacker's `blockedByItem` is called;
+  override it to react (the Prowler is dazed).
   Spawn eggs and natural spawns do get it.

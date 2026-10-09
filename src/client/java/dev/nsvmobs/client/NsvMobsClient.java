@@ -7,7 +7,11 @@ import java.util.Set;
 import dev.nsvmobs.NsvEntities;
 import dev.nsvmobs.client.model.AnglerModel;
 import dev.nsvmobs.client.model.BogLurkerModel;
+import dev.nsvmobs.client.model.BrineclawModel;
+import dev.nsvmobs.client.model.BroodmotherModel;
 import dev.nsvmobs.client.model.CapybaraModel;
+import dev.nsvmobs.client.model.CinderhulkModel;
+import dev.nsvmobs.client.model.CragTrollModel;
 import dev.nsvmobs.client.model.DriftcapModel;
 import dev.nsvmobs.client.model.DripfangModel;
 import dev.nsvmobs.client.model.DuneScorpionModel;
@@ -18,16 +22,23 @@ import dev.nsvmobs.client.model.HedgehogModel;
 import dev.nsvmobs.client.model.HermitCrabModel;
 import dev.nsvmobs.client.model.MeerkatModel;
 import dev.nsvmobs.client.model.MossbackTortoiseModel;
+import dev.nsvmobs.client.model.OregorgerModel;
 import dev.nsvmobs.client.model.OtterModel;
 import dev.nsvmobs.client.model.PenguinModel;
+import dev.nsvmobs.client.model.ProwlerModel;
+import dev.nsvmobs.client.model.RiftstalkerModel;
+import dev.nsvmobs.client.model.RimewraithModel;
+import dev.nsvmobs.client.model.SandmawModel;
 import dev.nsvmobs.client.model.VultureModel;
 import dev.nsvmobs.client.model.WildBoarModel;
 import dev.nsvmobs.client.model.WyrmlingModel;
 import dev.nsvmobs.client.render.CritterRenderer;
 import dev.nsvmobs.client.render.ScarecrowRenderer;
 import dev.nsvmobs.client.render.SkeletonVariantRenderer;
+import dev.nsvmobs.client.render.StormcallerRenderer;
 import dev.nsvmobs.client.render.ZombieVariantRenderer;
 import dev.nsvmobs.entity.BogLurker;
+import dev.nsvmobs.entity.Riftstalker;
 import dev.nsvmobs.registry.MobEntry;
 import dev.nsvmobs.registry.MobRegistry;
 
@@ -77,6 +88,43 @@ public final class NsvMobsClient implements ClientModInitializer {
         renderer(NsvEntities.ANGLER, ctx -> new CritterRenderer<>(ctx, "angler", AnglerModel::new, 0.5F,
                 (e, s) -> s.swimming = e.isInWater()));
         renderer(NsvEntities.DRIFTCAP, ctx -> new CritterRenderer<>(ctx, "driftcap", DriftcapModel::new, 0.4F, (e, s) -> {}));
+        // challengers
+        renderer(NsvEntities.BROODMOTHER, ctx -> new CritterRenderer<>(ctx, "broodmother", BroodmotherModel::new, 1.3F,
+                (e, s) -> s.holding = e.isSpitting()));
+        renderer(NsvEntities.SANDMAW, ctx -> new CritterRenderer<>(ctx, "sandmaw", SandmawModel::new, 0.9F, (e, s) -> {
+            s.hidden = e.isUnderground();
+            s.mode = e.phase();
+            s.modeAge = e.phaseAge(s.partialTick);
+        }));
+        renderer(NsvEntities.CINDERHULK, ctx -> new CritterRenderer<>(ctx, "cinderhulk", CinderhulkModel::new, 1.1F, (e, s) -> {
+            s.mode = e.action();
+            s.modeAge = e.actionAge(s.partialTick);
+            s.enraged = e.isEnraged();
+        }));
+        renderer(NsvEntities.CRAG_TROLL, ctx -> new CritterRenderer<>(ctx, "crag_troll", CragTrollModel::new, 1.0F,
+                (e, s) -> s.holding = e.isHolding()));
+        renderer(NsvEntities.PROWLER, ctx -> new CritterRenderer<>(ctx, "prowler", ProwlerModel::new, 0.6F, (e, s) -> {
+            s.mode = e.mode();
+            s.modeAge = e.modeAge(s.partialTick);
+        }));
+        renderer(NsvEntities.STORMCALLER, StormcallerRenderer::new);
+        renderer(NsvEntities.BRINECLAW, ctx -> new CritterRenderer<>(ctx, "brineclaw", BrineclawModel::new, 1.0F, (e, s) -> {
+            s.mode = e.action();
+            s.modeAge = e.actionAge(s.partialTick);
+        }));
+        renderer(NsvEntities.RIMEWRAITH, ctx -> new CritterRenderer<>(ctx, "rimewraith", RimewraithModel::new, 0.4F, (e, s) -> {
+            s.mode = e.action();
+            s.modeAge = e.actionAge(s.partialTick);
+        }));
+        renderer(NsvEntities.RIFTSTALKER, ctx -> new CritterRenderer<>(ctx, "riftstalker", RiftstalkerModel::new, 0.5F, (e, s) -> {
+            s.hidden = e.phase() == Riftstalker.PHASED;
+            s.mode = e.phase();
+            s.modeAge = e.phaseAge(s.partialTick);
+        }));
+        renderer(NsvEntities.OREGORGER, ctx -> new CritterRenderer<>(ctx, "oregorger", OregorgerModel::new, 1.0F, (e, s) -> {
+            s.mode = e.mode();
+            s.modeAge = e.modeAge(s.partialTick);
+        }));
         renderer(NsvEntities.MOSSBACK_TORTOISE, ctx -> new CritterRenderer<>(ctx, "mossback_tortoise", MossbackTortoiseModel::new, 0.9F, (e, s) -> {
             s.sheared = e.isSheared();
             s.hiding = e.isHiding();
@@ -110,6 +158,9 @@ public final class NsvMobsClient implements ClientModInitializer {
             s.flying = e.isFlying();
         }));
         renderer(NsvEntities.WYRMLING_EMBER, ctx -> new ThrownItemRenderer<>(ctx, 0.5F, true));
+        renderer(NsvEntities.BOULDER, ctx -> new ThrownItemRenderer<>(ctx, 3.0F, false));
+        renderer(NsvEntities.ICE_SHARD, ctx -> new ThrownItemRenderer<>(ctx, 0.6F, true));
+        renderer(NsvEntities.WEB_GLOB, ctx -> new ThrownItemRenderer<>(ctx, 1.2F, false));
 
         for (MobEntry<?> e : MobRegistry.all()) {
             if (!this.rendered.contains(e.type)) {

@@ -15,6 +15,13 @@ public abstract class CritterModel extends EntityModel<CritterRenderState> {
         this.id = id;
     }
 
+    /** Every model hides completely when the render state says so (a burrowed or phased mob). */
+    @Override
+    public void setupAnim(CritterRenderState s) {
+        super.setupAnim(s);
+        this.root().visible = !s.hidden;
+    }
+
     protected ModelPart part(String name) {
         return Geometry.part(this.root(), this.id, name);
     }

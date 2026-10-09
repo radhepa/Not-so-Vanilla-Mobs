@@ -1,6 +1,6 @@
 # Not-So-Vanilla Mobs: mob design
 
-Twenty-five new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.24 and its RPG add-on.
+Thirty-five new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.26 and its RPG add-on.
 
 | # | Mob | Kind | Where | Added |
 |---|-----|------|-------|-------|
@@ -29,6 +29,16 @@ Twenty-five new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friend
 | 23 | Penguin | friendly | Snowy Beach, frozen oceans, Frozen River | 1.2 |
 | 24 | Wild Boar | neutral | taigas, Forest, Dark Forest | 1.2 |
 | 25 | Otter | pet | River, Frozen River | 1.2 |
+| 26 | Broodmother | challenger | deep caves (below y 0), Dark Forest | 1.3 |
+| 27 | Sandmaw | challenger (burrowing) | Desert | 1.3 |
+| 28 | Cinderhulk | challenger | Basalt Deltas (Nether) | 1.3 |
+| 29 | Crag Troll | challenger | Windswept Hills, Stony and Jagged Peaks | 1.3 |
+| 30 | Prowler | challenger | jungles | 1.3 |
+| 31 | Stormcaller | challenger (illager) | taigas, Dark Forest, Windswept Hills | 1.3 |
+| 32 | Brineclaw | challenger | Beach, Stony Shore | 1.3 |
+| 33 | Rimewraith | challenger (floating) | Frozen and Jagged Peaks, Snowy Slopes, Ice Spikes, Grove | 1.3 |
+| 34 | Riftstalker | challenger | the outer End islands | 1.3 |
+| 35 | Oregorger | challenger | deep caves (below y 0) | 1.3 |
 
 ## Hostile
 
@@ -171,6 +181,161 @@ a purple frilled skirt, a faintly glowing core and six trailing twisting-vine te
 - About as common as the Warped Forest's endermen.
 - Drops: twisting vines 0–2, warped fungus 0–1, ender pearl (8%, killed by a player).
 
+## Challengers
+
+Big, rare, dangerous monsters, one per corner of the world. Each has a signature attack that
+announces itself (a sound, a pose, particles) and a way to beat it that a player can learn, the
+way a creeper's hiss or a shield against a skeleton works. They spawn alone, never within 64 blocks
+of another of their kind, give 15 to 30 XP and drop more than ordinary monsters.
+
+### 26. Broodmother
+A spider queen twice a spider's size: a bloated, mottled plum-black abdomen with a bone-white
+marking and a clutch of pale egg sacs on her back, a hairy body, eight long banded legs with high
+knees, big fangs and eight glowing red eyes.
+- Climbs walls like a spider. Bite 7 with Poison (8 s; Poison II on Hard). 60 health, 4 armour.
+- Web spit: from 4 to 16 blocks she rears up (a hiss and her front legs in the air) and spits a web.
+  It sticks you in a cobweb where you stand for 8 seconds (then the web melts away); with
+  mobGriefing off it only slows you.
+- Brood: at two-thirds and one-third health three cave spiders spill off her back.
+- Counter: fight her in the open, where her webs have nothing to stick to and you can see her
+  rear up; keep a sword or shears ready for webs; hold some of your damage for the broods.
+- Lives below y 0 in every overworld biome, and on the dark floor of Dark Forests. Rare.
+- Drops: string 2-5, spider eye 1-2, cobweb 0-2, fermented spider eye (25%, killed by a player).
+
+### 27. Sandmaw
+A colossal desert worm. Only its front ever leaves the ground: a sandy, segmented column three
+blocks high with sandstone plates down its back and a blunt beak of four jaws around rings of
+teeth.
+- Burrowed, it swims under loose ground (sand, red sand, dirt, grass, gravel, clay, snow blocks) at
+  6 blocks a second, faster than you can sprint, trailing trembling sand. Nothing can hurt it down
+  there. It feels footsteps: it notices a sneaking player only within 4 blocks.
+- Under its prey the ground shakes for most of a second, then it bursts out: 9 damage and a toss
+  into the air to everything within a block and a half.
+- Surfaced for about five seconds, it rears and bites anything within 3.6 blocks (8 damage), then
+  dives again and comes back for another pass. 70 health, 6 armour.
+- Counter: when the sand shakes under you, move. It can't follow you onto hard ground (sandstone,
+  stone, planks, any block you place) and gives up after ten seconds of that; fight it in the
+  window after it surfaces.
+- Lives in Deserts, mostly by night (by day, much more rarely). Rare.
+- Drops: bone 1-3, gold nugget 2-6, diamond (6%, killed by a player).
+
+### 28. Cinderhulk
+A hulking gorilla-shaped brute of basalt from the Basalt Deltas: huge shoulders and arms on short
+legs, blackstone fists with gold flecks, a ridge of basalt spikes, molten cracks glowing through its
+chest, arms and back, and ember eyes.
+- Punch 11 and sets you alight. 90 health, 10 armour, can't be knocked back. Walks across lava like
+  a strider; immune to fire.
+- Ground slam (within 7 blocks): it roars and raises both fists for a second, then slams the
+  ground. A ring of fire races outward to 9 blocks; everyone standing on the ground as it passes
+  takes 9 damage, catches fire and is thrown up.
+- Magma hurl (7 to 24 blocks): lobs a chunk of molten rock (6 damage and fire, splashes 4).
+- Enraged below a third of its health: its cracks blaze, it's faster and slams twice as often.
+- Counter: jump as the ring reaches you. Freezing hurts it five times as much (powder snow), and
+  water and rain hurt it.
+- Basalt Deltas only. Rare.
+- Drops: magma cream 1-3, basalt 2-4, gold nugget 3-8, netherite scrap (3%, killed by a player).
+
+### 29. Crag Troll
+A lanky, hunched mountain troll with grey-green stony hide, lichen and moss, rocks growing out of
+its back and shoulders, a long warty nose, tusks, small yellow eyes and a hide pouch with an
+emerald glint (it collects tolls).
+- Punch 10 with a huge knockback that lifts you off your feet: dangerous on a cliff edge.
+  80 health, 6 armour.
+- Boulder throw (6 to 28 blocks): it rips a boulder out of the ground and lifts it overhead (that's
+  your warning), then hurls it in an arc: 9 damage and knockback, 4 splash.
+- Regenerates a heart every two seconds (green specks) unless it's burned: any fire damage stops
+  the healing for ten seconds (smoke).
+- Counter: fire (Flame, Fire Aspect, a lava bucket, flint and steel); keep away from cliff edges;
+  sidestep the boulder.
+- Windswept Hills (all three kinds), Stony Peaks and Jagged Peaks, at night. Rare.
+- Drops: emerald 1-3, flint 0-3, mossy cobblestone 1-3.
+
+### 30. Prowler
+A black jungle panther with faint rosettes, big paws, a long curling tail and glowing green eyes.
+- Stalks you crouched and silent through the undergrowth (at night only the eyes show).
+- Pounce: it sinks lower, lashes its tail and growls for most of a second, then leaps up to ten
+  blocks with a roar. If it lands: 8 damage and you're pinned (heavily slowed) while it mauls you
+  three more times, then it slinks off to stalk again.
+- Up close it swipes (7). 40 health, takes no fall damage.
+- Counter: raise a shield as it leaps: it's dazed for three seconds and takes half again as much
+  damage. Hitting it hard while it's mauling throws it off.
+- Jungles, Bamboo Jungles and Sparse Jungles, at night (and in the dark under the canopy).
+- Drops: leather 1-3, bone 0-2.
+
+### 31. Stormcaller
+An illager storm mystic in a slate-blue robe with oxidised copper trim, a copper circlet with a
+lightning-rod spike, a glowing lightning sigil and pale electric-blue eyes.
+- Keeps its distance. Calls lightning: rings of sparks crackle on the ground under you, where
+  you're heading and nearby for a second and a half, then lightning strikes each one (7 damage
+  and fire within a block and a half). In a thunderstorm it calls five bolts, faster.
+- Gale: get within four and a half blocks and it blasts everything around it away (2 damage and a
+  big push).
+- 36 health. It's a raider: it fights alongside other illagers, attacks villagers and iron golems,
+  and a village bell makes it glow. It never spawns as a captain.
+- Counter: keep moving when the sparks appear; close in between casts; arrows.
+- Taigas, Snowy Taiga, Dark Forest, Windswept Hills and Windswept Forest, at night. Rare.
+- Drops: emerald 0-2, copper ingot 1-3, wind charge 1-3 (35%).
+
+### 32. Brineclaw
+A giant armoured shore crab: a rough crimson carapace crusted with barnacles and draped with
+seaweed, a huge spiny crusher claw on its right, a smaller cutter on its left, stalked eyes and
+eight spiky legs.
+- Front shell: blows and arrows from within 70 degrees of its front do a quarter of their damage
+  (a clang and sparks). Its sides and back take full damage. 60 health, 8 armour.
+- Turns slowly (100 degrees a second), so you can get round it.
+- Claw: it raises the claw with the pincer gaping (a clack), then snaps it shut on whatever is in
+  front of it: 9 damage, held for a second, then flung aside.
+- Breathes underwater and walks along the sea floor.
+- Counter: circle it (sprinting round it close outpaces its turning) and hit it from the side or
+  behind; tridents do extra damage (Impaling).
+- Beaches and Stony Shores, at night.
+- Drops: bone meal 1-4, kelp 0-3, nautilus shell (12%, killed by a player).
+
+### 33. Rimewraith
+A floating spectre of ice and snow: a deep snow hood with darkness and two ice-blue eyes inside,
+a ribcage of glacial ice with a faint glow behind it, long icy arms with icicle claws, a crown of
+ice crystals and a tattered frost-white robe trailing into wisps.
+- Its cold freezes any player (and anything it's hunting) within six blocks, the way powder snow
+  does; frozen through, you also take 2 damage a second near it.
+- Hurls fans of three ice shards (4 damage, freezing and Slowness); claws for 6 and freezing.
+- Still water freezes over under it (frosted ice, which melts back).
+- 40 health. Fire hurts it twice as much, and it wastes away in warm biomes. Undead.
+- Counter: wear leather armour (any piece makes you immune to freezing, as with powder snow);
+  fire.
+- Frozen Peaks, Jagged Peaks, Snowy Slopes, Ice Spikes and Groves, at night.
+- Drops: snowball 1-4, packed ice 0-2, blue ice (15%, killed by a player).
+
+### 34. Riftstalker
+A tall, gaunt void predator of the outer End: matte black skin cracked by glowing magenta rift
+seams, a smooth eyeless bone mask with one glowing slit, long arms ending in bone scythe blades,
+reverse-jointed legs and a whip tail with a bone spike.
+- Every few seconds it vanishes and a rift opens two blocks behind you (swirling purple particles
+  and a hum) for most of a second; then it steps out, raises its blade and slashes for 10.
+- Turn round and hit it in the half second before the slash and it staggers: helpless for two and
+  a half seconds and taking half again as much damage.
+- Projectiles never touch it: it blinks away from them, like an enderman. Water hurts it.
+  Claws for 8 between blinks. 60 health, 4 armour.
+- Counter: listen for the rift, turn and be ready to strike.
+- End Highlands, End Midlands and End Barrens. Rare.
+- Drops: ender pearl 1-2, chorus fruit 0-2, eye of ender (12%, killed by a player).
+
+### 35. Oregorger
+A massive armoured beast of the deep caves, like a giant pangolin crossed with a boulder: a domed
+back of deepslate plates studded with chunks of raw iron, copper and gold (and a diamond glint), a
+blunt stone snout with a crushing jaw, amber eyes and digging claws.
+- 80 health, 12 armour and toughness: most blows barely scratch it. Bites for 9.
+- Rolling charge: it curls into a ball and revs (grit sprays behind it) for a second, then bowls
+  straight at you at 12 blocks a second: 12 damage and you're thrown.
+- If the roll ends against a wall it's stunned for three and a half seconds, uncurled with its
+  armour useless.
+- Eats exposed ore veins (with mobGriefing on), leaving bare rock, and keeps the ore: it drops
+  everything it ate when it dies.
+- Counter: stand in front of a wall and dodge aside at the last moment, then hit it while it's
+  stunned.
+- Lives below y 0 in every overworld biome. Rare.
+- Drops: raw iron 1-3, raw copper 2-5, raw gold 0-2, diamond (5%, killed by a player), plus the ore
+  it ate.
+
 ## Friendly
 
 ### 8. Mossback Tortoise
@@ -278,8 +443,9 @@ A sleek dark-brown river otter with a cream face and chest, whiskers, webbed paw
   Friends guards and pets treat them like any other monster.
 - RPG add-on (`villagefriends_rpg`): an optional mixin, applied only when the add-on is installed,
   makes its Bestiary count Sporeling, Frostbitten and Lost Miner as Zombies, Briarbones,
-  Gravewarden, Soulpyre and Sculkbones as Skeletons, Dune Scorpion and Dripfang as Spiders, Angler
-  as a Guardian and Driftcap as an Enderman. Everything else earns normal kill XP.
+  Gravewarden, Soulpyre and Sculkbones as Skeletons, Dune Scorpion, Dripfang, Broodmother and
+  Brineclaw as Spiders, Angler as a Guardian, Driftcap and Riftstalker as Endermen, Sandmaw as
+  Vermin, Cinderhulk as a Blaze and Stormcaller as an Illager. Everything else earns normal kill XP.
 
 ## Model contracts (art <-> code)
 
@@ -311,10 +477,22 @@ The Java animation code drives these part names:
 | penguin | `body` (pivot at its base) with `head`, `right_flipper` / `left_flipper`; `right_foot` / `left_foot` (children of root). The code tips `body` forward to slide or swim |
 | wild_boar | `body` with `mane` and `tail`, `head` (child of root), `right_front_leg`, `left_front_leg`, `right_hind_leg`, `left_hind_leg` |
 | otter | `body` (pivot at the centre) with `head`, `tail` (with `tail_tip`) and all four legs, so the code can roll it onto its back |
+| broodmother | `body` with `head` (`right_fang` / `left_fang`), `abdomen` (pivot at its joint; the code bobs and pulses it) and legs `right_leg1..4` / `left_leg1..4`, each with a `_lower` child (knee to foot) |
+| sandmaw | `segment1` (child of root, pivot at ground level; the code slides it down to sink the worm) > `segment2` > `segment3` > `head` with `jaw_top`, `jaw_bottom`, `jaw_left`, `jaw_right` |
+| cinderhulk | `body` (pivot at the waist) with `head`, `right_arm` / `left_arm`; `right_leg` / `left_leg` (children of root) |
+| crag_troll | as cinderhulk, plus `jaw` (child of head) and `boulder` (child of root, where the hands are with both arms raised to xRot -2.9; shown only while it holds one) |
+| prowler | `body`, `head` (child of root) with `jaw`, `tail` (child of body) with `tail_tip`, four legs (children of root) |
+| stormcaller | vanilla illager names and layout (`head` with `hat` and `nose`, `body`, `arms` with `left_shoulder`, `right_arm`, `left_arm`, `right_leg`, `left_leg`); decorations are children of `head` or `body`, never `hat` (the game hides it) |
+| brineclaw | `body` with `right_eye` / `left_eye`, `right_claw` (the big one) / `left_claw` each with `right_pincer` / `left_pincer`, legs `right_leg1..4` / `left_leg1..4` |
+| rimewraith | `body` with `head`, `right_arm` / `left_arm` and `robe` (optional `robe_tail` child) |
+| riftstalker | `body` (pivot at the hips) with `head`, `right_arm` / `left_arm` (each with `right_forearm` / `left_forearm`), `tail` with `tail_tip`; `right_leg` / `left_leg` (children of root) each with `right_shin` / `left_shin` |
+| oregorger | `body` with `head` (`jaw`) and `tail`, four legs (children of root), and `ball` (child of root, pivot at its centre: the rolled-up form, shown only while rolling) |
 
 Hitboxes (blocks, width x height): zombies 0.6x1.95, briarbones 0.6x1.99, gravewarden 0.7x2.3
 (rendered at 1.15x), bog lurker 1.2x0.9, gloomwing 0.9x0.6, dune scorpion 1.3x0.7, tortoise
 1.2x0.9, capybara 0.9x0.9, wyrmling 0.6x0.6, lost miner 0.6x1.95, soulpyre 0.6x1.99, glowmoth
 0.7x0.6, hermit crab 0.5x0.45, hedgehog 0.45x0.4, scarecrow 0.6x1.95, sculkbones 0.6x1.99, vulture 0.9x0.7,
 dripfang 0.9x0.55, angler 0.9x0.8, driftcap 0.8x1.2, meerkat 0.4x0.6, penguin 0.55x0.95, wild boar
-0.9x0.9, otter 0.6x0.5.
+0.9x0.9, otter 0.6x0.5, broodmother 2.2x1.3, sandmaw 1.5x3.0
+(surfaced), cinderhulk 1.8x2.8, crag troll 1.6x2.9, prowler 1.0x1.0, stormcaller 0.6x1.95, brineclaw
+1.8x1.0, rimewraith 0.8x2.2, riftstalker 0.7x2.7, oregorger 1.6x1.3.
