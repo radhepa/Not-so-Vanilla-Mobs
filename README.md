@@ -1,8 +1,8 @@
 # Not-So-Vanilla Mobs
 
-Thirty-five new mobs for **Minecraft 26.3** (Fabric): three zombie variants, four skeleton variants,
+Fifty new mobs for **Minecraft 26.3** (Fabric): three zombie variants, four skeleton variants,
 eight other hostile creatures, ten challengers (big, rare monsters with attacks you can learn to
-beat), six friendly animals, one neutral animal and three pets.
+beat), twelve friendly animals, five neutral animals, six pets and two mounts (one of them flies).
 
 | Mob | Kind | Where to find it | What it does |
 |-----|------|------------------|--------------|
@@ -41,8 +41,23 @@ beat), six friendly animals, one neutral animal and three pets.
 | **Rimewraith** | challenger | Frozen and Jagged Peaks, Snowy Slopes, Ice Spikes, Grove | A floating ice spectre that freezes you if you come near (wear leather), hurls ice shards and freezes water. Fire hurts it double. |
 | **Riftstalker** | challenger | the outer End | Vanishes and steps out of a rift behind you to slash. Hit it as it steps out and it staggers. Blinks away from arrows. |
 | **Oregorger** | challenger | deep caves below y 0 | A heavily armoured beast that curls into a ball and bowls into you. Make it hit a wall and it's stunned and defenceless. Eats ore and gives it back when it dies. |
+| **Deer** | friendly | Forest, Birch Forest, Taiga, Meadow | Skittish: bolts (white tail up) from anyone who isn't sneaking, and the herd follows. Stags carry antlers; fawns are spotted. Breeds with apples. |
+| **Goose** | neutral | Plains, Sunflower Plains, River, Meadow | Hisses at anyone near its goslings, then chases and pecks. Steals items lying about and carries them in its bill. Moults feathers. Breeds with wheat. |
+| **Yak** | friendly | Snowy Slopes, Grove, Snowy Plains, Snowy Taiga | Shear it for brown wool, milk it with a bucket. Stand next to one and you won't freeze, even in powder snow. Breeds with wheat. |
+| **Flamingo** | friendly | Mangrove Swamp, Swamp, Beach | Rests on one leg, wades in the shallows, and the whole flock flutters off when startled. Flocks march in a head-flagging display. Breeds with beetroot. |
+| **Hummingbird** | friendly, flying | jungles, Flower Forest, Sunflower Plains | Three colourways. Hovers at flowers, then grows nearby crops and spreads the flowers it sipped. Breeds with sugar. |
+| **Seal** | friendly | Stony Shore, Snowy Beach, cold oceans | Slow on land, fast in water. Throw a snowball and it balances it on its nose, claps, and throws one back. Breeds with raw fish. |
+| **Beaver** | friendly | River, Swamp, Taiga, Old Growth Pine Taiga | Gnaws logs into stripped logs and drops sticks. Slaps its tail to warn the colony when you sprint close. Breeds with sticks. |
+| **Skunk** | neutral | Forest, Birch Forest, Plains, Meadow | Stamps and raises its tail when you walk up. Ignore the warning (or hurt it) and its spray brings Nausea and Blindness. Breeds with eggs. |
+| **Rattlesnake** | neutral | Badlands, Savanna Plateau, Windswept Savanna | Coils and rattles when you come close. Keep coming and it strikes with Poison; back off and it settles down. Sneak to get closer. |
+| **Cinder Newt** | neutral | Basalt Deltas, Nether Wastes, Crimson Forest | A glowing-spotted Nether newt that walks on lava. Hurt one and the group bites back with fire. Breeds with magma cream. |
+| **Owl** | pet, flying | Dark Forest, Pale Garden, old growth taigas, Snowy Taiga | Tame it with raw rabbit or chicken. Gives you Night Vision in the dark, swoops at monsters. Tawny or snowy. |
+| **Raccoon** | pet | Forests, Dark Forest, Swamp | Tame it with a snack (cookie, apple, bread, berries). A pack rat: it gathers items lying around and brings them to you. |
+| **Chameleon** | pet | jungles | Tame it with spider eyes. Its skin takes the colour of whatever it stands on; crouch beside it and you turn invisible too. |
+| **Ostrich** | mount | Savanna, Savanna Plateau | Tame and saddle it like a horse. The fastest mount on flat ground, a weak jumper, and it glides down from heights with no fall damage. |
+| **Griffin** | flying mount | Stony, Jagged and Frozen Peaks, Meadow (rare) | Eagle in front, lion behind. Tame and saddle it like a horse, then fly it where you look. No fall damage for it or you. |
 
-All thirty-five have spawn eggs in the Spawn Eggs creative tab. The full design is in [DESIGN.md](DESIGN.md).
+All fifty have spawn eggs in the Spawn Eggs creative tab. The full design is in [DESIGN.md](DESIGN.md).
 More mobs are on the way; [ARCHITECTURE.md](ARCHITECTURE.md) explains how the mod is put together
 and walks through adding one.
 
@@ -83,6 +98,41 @@ Each challenger warns you before its big attack, and each has a weakness:
 - Every few minutes in the water it dives and brings something up for you: usually a fish, sometimes
   ink, kelp or a lily pad, and very rarely a nautilus shell.
 
+## The Owl
+- Feed a wild Owl **raw rabbit or raw chicken**; each feeding has a 1 in 4 chance to tame it.
+- Use it with an empty hand to make it sit or follow. Feed it to heal it or breed it.
+- At night, or anywhere dark, you have Night Vision while your owl is within 16 blocks.
+- It swoops at monsters that hurt you, and at the ones you attack.
+
+## The Raccoon
+- Feed a wild Raccoon **a snack** (cookie, apple, bread, sweet berries or glow berries); each
+  feeding has a 1 in 3 chance to tame it.
+- Use it with an empty hand to make it sit or follow.
+- A pack rat: it picks up items lying within 10 blocks and brings them to you, one stack at a time.
+  It leaves alone anything you threw yourself. It keeps clear of monsters.
+
+## The Chameleon
+- Feed a wild Chameleon **spider eyes**; each feeding has a 1 in 3 chance to tame it.
+- Use it with an empty hand to make it sit or follow.
+- Its skin slowly takes on the colour of the block it's standing on. Crouch within 3 blocks of it
+  and you turn invisible too.
+
+## The Ostrich
+- Tame it like a horse: keep mounting it until it stops throwing you off (feeding it helps). Then
+  put a saddle on it (crouch and use it to open its inventory).
+- The fastest mount on flat ground, but it only jumps about a block and a half.
+- While you ride it, it flaps its wings and glides down from any height. Neither of you takes fall
+  damage.
+
+## The Griffin
+- Tame it like a horse: keep mounting it until it stops bucking you off (raw meat calms it faster).
+  Then put a saddle on it (crouch and use it to open its inventory).
+- **To fly:** on the ground, jump to take off. Hold the jump longer to launch higher.
+- **In the air:** hold forward and it flies where you look. Look up to climb and down to dive.
+  - Tap jump for an extra wing-beat upward.
+  - Let go of forward and it hovers, sinking slowly. Touch the ground to land.
+- Neither of you takes fall damage. Heal it with raw meat; breed two with golden apples.
+
 ## Compatibility
 - Same Minecraft (26.3), Fabric Loader (0.19.5) and Fabric API (0.161.0+26.3) as
   [Village Friends](https://github.com/radhepa/Village-Friends-Minecraft-Mod).
@@ -96,7 +146,7 @@ Each challenger warns you before its big attack, and each has a weakness:
   The other mobs earn normal kill XP. Without the add-on, that hook stays switched off.
 
 ## Install
-Put `not-so-vanilla-mobs-1.3.0.jar` in your `mods` folder next to Fabric API. It's tested together
+Put `not-so-vanilla-mobs-1.4.0.jar` in your `mods` folder next to Fabric API. It's tested together
 with Village Friends 2.26 and its RPG add-on as one modpack.
 
 ## Building

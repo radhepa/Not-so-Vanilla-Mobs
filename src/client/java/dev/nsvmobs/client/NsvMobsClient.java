@@ -6,38 +6,55 @@ import java.util.Set;
 
 import dev.nsvmobs.NsvEntities;
 import dev.nsvmobs.client.model.AnglerModel;
+import dev.nsvmobs.client.model.BeaverModel;
 import dev.nsvmobs.client.model.BogLurkerModel;
 import dev.nsvmobs.client.model.BrineclawModel;
 import dev.nsvmobs.client.model.BroodmotherModel;
 import dev.nsvmobs.client.model.CapybaraModel;
+import dev.nsvmobs.client.model.ChameleonModel;
+import dev.nsvmobs.client.model.CinderNewtModel;
 import dev.nsvmobs.client.model.CinderhulkModel;
 import dev.nsvmobs.client.model.CragTrollModel;
+import dev.nsvmobs.client.model.DeerModel;
 import dev.nsvmobs.client.model.DriftcapModel;
 import dev.nsvmobs.client.model.DripfangModel;
 import dev.nsvmobs.client.model.DuneScorpionModel;
+import dev.nsvmobs.client.model.FlamingoModel;
 import dev.nsvmobs.client.model.Geometry;
 import dev.nsvmobs.client.model.GloomwingModel;
 import dev.nsvmobs.client.model.GlowmothModel;
+import dev.nsvmobs.client.model.GooseModel;
+import dev.nsvmobs.client.model.GriffinModel;
 import dev.nsvmobs.client.model.HedgehogModel;
 import dev.nsvmobs.client.model.HermitCrabModel;
+import dev.nsvmobs.client.model.HummingbirdModel;
 import dev.nsvmobs.client.model.MeerkatModel;
 import dev.nsvmobs.client.model.MossbackTortoiseModel;
 import dev.nsvmobs.client.model.OregorgerModel;
+import dev.nsvmobs.client.model.OstrichModel;
 import dev.nsvmobs.client.model.OtterModel;
+import dev.nsvmobs.client.model.OwlModel;
 import dev.nsvmobs.client.model.PenguinModel;
 import dev.nsvmobs.client.model.ProwlerModel;
+import dev.nsvmobs.client.model.RaccoonModel;
+import dev.nsvmobs.client.model.RattlesnakeModel;
 import dev.nsvmobs.client.model.RiftstalkerModel;
 import dev.nsvmobs.client.model.RimewraithModel;
 import dev.nsvmobs.client.model.SandmawModel;
+import dev.nsvmobs.client.model.SealModel;
+import dev.nsvmobs.client.model.SkunkModel;
 import dev.nsvmobs.client.model.VultureModel;
 import dev.nsvmobs.client.model.WildBoarModel;
 import dev.nsvmobs.client.model.WyrmlingModel;
+import dev.nsvmobs.client.model.YakModel;
 import dev.nsvmobs.client.render.CritterRenderer;
 import dev.nsvmobs.client.render.ScarecrowRenderer;
 import dev.nsvmobs.client.render.SkeletonVariantRenderer;
 import dev.nsvmobs.client.render.StormcallerRenderer;
 import dev.nsvmobs.client.render.ZombieVariantRenderer;
 import dev.nsvmobs.entity.BogLurker;
+import dev.nsvmobs.entity.Goose;
+import dev.nsvmobs.entity.Raccoon;
 import dev.nsvmobs.entity.Riftstalker;
 import dev.nsvmobs.registry.MobEntry;
 import dev.nsvmobs.registry.MobRegistry;
@@ -153,6 +170,72 @@ public final class NsvMobsClient implements ClientModInitializer {
             s.swimming = e.isInWater();
             s.sitting = e.isInSittingPose();
         }));
+        renderer(NsvEntities.DEER, ctx -> new CritterRenderer<>(ctx, "deer", DeerModel::new, 0.5F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.antlers = e.isStag() && !e.isBaby();
+            s.warning = e.isAlarmed();
+        }, List.of("deer", "deer_fawn")));
+        renderer(NsvEntities.GOOSE, ctx -> new CritterRenderer<Goose>(ctx, "goose", GooseModel::new, 0.35F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.warning = e.isHissing();
+            s.swimming = e.isInWater();
+        }, List.of("goose", "goose_gosling")).carriesItem("mouth"));
+        renderer(NsvEntities.YAK, ctx -> new CritterRenderer<>(ctx, "yak", YakModel::new, 0.9F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.sheared = e.isSheared();
+            s.antlers = !e.isBaby();
+        }, List.of("yak", "yak_calf")));
+        renderer(NsvEntities.FLAMINGO, ctx -> new CritterRenderer<>(ctx, "flamingo", FlamingoModel::new, 0.35F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.resting = e.isResting();
+            s.flying = e.isFluttering();
+            s.playing = e.isDancing();
+            s.swimming = e.isInWater();
+        }, List.of("flamingo", "flamingo_chick")));
+        renderer(NsvEntities.HUMMINGBIRD, ctx -> new CritterRenderer<>(ctx, "hummingbird", HummingbirdModel::new, 0.15F, (e, s) -> {
+            s.variant = e.variant();
+            s.flying = e.isFlying();
+        }, List.of("hummingbird", "hummingbird_violet", "hummingbird_rufous")));
+        renderer(NsvEntities.SEAL, ctx -> new CritterRenderer<>(ctx, "seal", SealModel::new, 0.5F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.swimming = e.isInWater();
+            s.playing = e.isBalancing();
+        }, List.of("seal", "seal_pup")));
+        renderer(NsvEntities.BEAVER, ctx -> new CritterRenderer<>(ctx, "beaver", BeaverModel::new, 0.4F, (e, s) -> {
+            s.swimming = e.isInWater();
+            s.warning = e.isSlapping();
+            s.playing = e.isGnawing();
+        }));
+        renderer(NsvEntities.SKUNK, ctx -> new CritterRenderer<>(ctx, "skunk", SkunkModel::new, 0.35F, (e, s) -> {
+            s.warning = e.isWarning();
+            s.playing = e.isSpraying();
+        }));
+        renderer(NsvEntities.RATTLESNAKE, ctx -> new CritterRenderer<>(ctx, "rattlesnake", RattlesnakeModel::new, 0.35F,
+                (e, s) -> s.warning = e.isRattling()));
+        renderer(NsvEntities.CINDER_NEWT, ctx -> new CritterRenderer<>(ctx, "cinder_newt", CinderNewtModel::new, 0.4F, (e, s) -> {}));
+        renderer(NsvEntities.OWL, ctx -> new CritterRenderer<>(ctx, "owl", OwlModel::new, 0.3F, (e, s) -> {
+            s.variant = e.variant();
+            s.sitting = e.isInSittingPose();
+            s.flying = e.isFlying();
+        }, List.of("owl", "owl_snowy")));
+        renderer(NsvEntities.RACCOON, ctx -> new CritterRenderer<Raccoon>(ctx, "raccoon", RaccoonModel::new, 0.35F, (e, s) -> {
+            s.sitting = e.isInSittingPose();
+            s.playing = e.isWashing();
+        }).carriesItem("mouth"));
+        renderer(NsvEntities.CHAMELEON, ctx -> new CritterRenderer<>(ctx, "chameleon", ChameleonModel::new, 0.25F, (e, s) -> {
+            s.sitting = e.isInSittingPose();
+            s.tint = e.tint();
+        }));
+        renderer(NsvEntities.OSTRICH, ctx -> new CritterRenderer<>(ctx, "ostrich", OstrichModel::new, 0.6F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.saddled = e.isSaddled();
+            s.flying = e.isGliding();
+        }, List.of("ostrich", "ostrich_chick")));
+        renderer(NsvEntities.GRIFFIN, ctx -> new CritterRenderer<>(ctx, "griffin", GriffinModel::new, 0.9F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.saddled = e.isSaddled();
+            s.flying = e.isFlying();
+        }, List.of("griffin", "griffin_chick")));
         renderer(NsvEntities.WYRMLING, ctx -> new CritterRenderer<>(ctx, "wyrmling", WyrmlingModel::new, 0.4F, (e, s) -> {
             s.sitting = e.isInSittingPose();
             s.flying = e.isFlying();

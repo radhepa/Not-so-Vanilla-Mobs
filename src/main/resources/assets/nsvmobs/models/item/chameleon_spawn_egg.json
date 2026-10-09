@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nsvmobs:item/chameleon_spawn_egg"
+  }
+}

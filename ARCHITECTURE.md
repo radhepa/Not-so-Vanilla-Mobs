@@ -153,6 +153,11 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
   parts by name with `part("tail")` or `optional("ear")`.
 - **Glow:** if the art script painted any `c.glow(...)` pixels, a `<id>_glow.png` exists and the
   renderers add a full-bright `GlowLayer` automatically.
+- **Carried items** (the Goose's loot, the Raccoon's finds): the item is the mob's main-hand slot.
+  Chain `.carriesItem("mouth")` onto its `CritterRenderer`, and give the model an empty part with
+  that name where the item should sit. `MouthItemLayer` follows the part's animated pose.
+- **Tint:** `CritterRenderState.tint` (ARGB, white by default) multiplies the whole model. The
+  Chameleon sets it from the block it stands on, so its texture is painted pale and neutral.
 
 ### Compatibility
 - **Versions:** Minecraft, Fabric Loader and Fabric API versions are pinned in `gradle.properties`
