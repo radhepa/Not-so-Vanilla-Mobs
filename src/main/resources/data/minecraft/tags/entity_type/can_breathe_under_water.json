@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "nsvmobs:angler",
     "nsvmobs:bog_lurker"
   ]
 }

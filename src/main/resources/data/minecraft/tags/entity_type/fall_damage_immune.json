@@ -1,8 +1,11 @@
 {
   "replace": false,
   "values": [
+    "nsvmobs:driftcap",
+    "nsvmobs:dripfang",
     "nsvmobs:gloomwing",
     "nsvmobs:glowmoth",
+    "nsvmobs:vulture",
     "nsvmobs:wyrmling"
   ]
 }

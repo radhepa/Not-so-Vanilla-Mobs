@@ -7,6 +7,8 @@ import java.util.function.Function;
 import dev.nsvmobs.client.model.CritterModel;
 import dev.nsvmobs.client.model.Geometry;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -38,6 +40,12 @@ public class CritterRenderer<T extends Mob> extends MobRenderer<T, CritterRender
     @Override
     public Identifier getTextureLocation(CritterRenderState state) {
         return this.textures.get(Math.floorMod(state.variant, this.textures.size()));
+    }
+
+    /** 26.3 doesn't shrink babies itself (vanilla swaps in separate baby models), so scale by the age scale here. */
+    @Override
+    protected void scale(CritterRenderState state, PoseStack poseStack) {
+        if (state.ageScale != 1.0F) poseStack.scale(state.ageScale, state.ageScale, state.ageScale);
     }
 
     @Override

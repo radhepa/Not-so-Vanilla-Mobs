@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "nsvmobs:frostbitten"
+    "nsvmobs:frostbitten",
+    "nsvmobs:penguin"
   ]
 }

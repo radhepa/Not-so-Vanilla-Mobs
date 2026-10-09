@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nsvmobs:item/meerkat_spawn_egg"
+  }
+}

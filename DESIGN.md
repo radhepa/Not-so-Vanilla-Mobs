@@ -1,6 +1,6 @@
 # Not-So-Vanilla Mobs: mob design
 
-Fifteen new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.24 and its RPG add-on.
+Twenty-five new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.24 and its RPG add-on.
 
 | # | Mob | Kind | Where | Added |
 |---|-----|------|-------|-------|
@@ -19,6 +19,16 @@ Fifteen new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.
 | 13 | Glowmoth | friendly (flying) | Flower Forest, Meadow, forests, Cherry Grove | 1.1 |
 | 14 | Hermit Crab | friendly | Beach, Stony Shore, Mangrove Swamp | 1.1 |
 | 15 | Hedgehog | pet | forests, Meadow, Plains, Flower Forest | 1.1 |
+| 16 | Scarecrow | hostile (humanoid) | Plains, Sunflower Plains, Meadow | 1.2 |
+| 17 | Sculkbones | skeleton variant | Deep Dark | 1.2 |
+| 18 | Vulture | hostile (flying) | Desert, Badlands, Savanna | 1.2 |
+| 19 | Dripfang | hostile | Dripstone Caves | 1.2 |
+| 20 | Angler | hostile (swimming) | deep oceans | 1.2 |
+| 21 | Driftcap | hostile (floating) | Warped Forest (Nether) | 1.2 |
+| 22 | Meerkat | friendly | Desert, Savanna, Badlands | 1.2 |
+| 23 | Penguin | friendly | Snowy Beach, frozen oceans, Frozen River | 1.2 |
+| 24 | Wild Boar | neutral | taigas, Forest, Dark Forest | 1.2 |
+| 25 | Otter | pet | River, Frozen River | 1.2 |
 
 ## Hostile
 
@@ -99,6 +109,68 @@ fire (emissive).
 - Gives off drifting soul-fire particles.
 - Drops: bone 0–2, arrow 0–2, soul soil (25%).
 
+### 16. Scarecrow
+A field scarecrow come to life: a stuffed burlap-sack head with button eyes that glow ember-orange
+(emissive) and a stitched grin, a battered straw hat, a patched plaid shirt, rope belt, and straw
+bursting from the collar, cuffs and hems.
+- By night it walks and fights like a zombie (it goes after villagers too). Hits blind you for a
+  moment (a face full of straw).
+- By day, under the open sky, it can't move at all: it freezes in a scarecrow T-pose, arms out, and
+  won't fight back. That's the time to deal with it. It doesn't burn in sunlight.
+- Straw burns: fire hurts it twice as much.
+- Never calls for reinforcements, never a baby, never converts in water. 18 health.
+- Drops: wheat 0–3, stick 0–2, hay bale (5%, killed by a player).
+
+### 17. Sculkbones (skeleton)
+A skeleton swallowed by the sculk in the Deep Dark: cold dark bones under creeping sculk, eye
+sockets crusted shut, glowing cyan sculk veins and two twitching sensor tendrils on its skull.
+- Blind: it hunts by sound. Walking, running and jumping within 16 blocks give you away; sneaking or
+  standing still doesn't. It loses you a few seconds after the footsteps stop.
+- Bow archer. Its arrows mark you (Glowing 6 s), and while you're marked it hears you even sneaking.
+- 24 health. Burns in daylight (not that the Deep Dark has any).
+- Drops: bone 0–2, arrow 0–2, sculk (15%), echo shard (2%, killed by a player).
+
+### 18. Vulture
+A big scruffy vulture: sooty brown wings with fingered tips, a bald wrinkled red head on a bare neck,
+a cream feather ruff and a hooked beak. Wingspan nearly three blocks.
+- Soars in wide slow circles 14–22 blocks over open desert, badlands and savanna, in daylight too.
+- Scavenger: it leaves healthy players alone. A player at half health or less draws every vulture
+  around: they circle overhead, then swoop to peck (3 damage) and climb away again. Heal back above
+  70% and they lose interest (unless you hit one).
+- 16 health. Never takes fall damage.
+- Drops: feather 0–2, bone 0–1.
+
+### 19. Dripfang
+A Dripstone Caves predator that mimics pointed dripstone: a many-legged crawler armoured in
+dripstone plates, with a dripstone tail spike, calcite legs, hooked fangs and dim amber eyes.
+- Hangs from the ceiling disguised as a stalactite (two tiny amber eyes are the only tell). Natural
+  spawns go straight up to the nearest ceiling.
+- When a player walks underneath (within about a block sideways, up to 12 blocks down) it drops on
+  them point-first: 6 damage, like falling dripstone. Hitting it also knocks it down.
+- Then it fights on the ground: bites for 4, leaps. 18 health, 4 armour.
+- Left alone for 15 seconds under a ceiling, it springs back up and hangs again.
+- Never takes fall damage.
+- Drops: pointed dripstone 0–2, flint 0–1.
+
+### 20. Angler
+A deep-sea anglerfish: a lumpy charcoal body, a huge underbite of needle teeth, milky eyes, ragged
+fins and a glowing lure dangling from a stalk over its mouth (emissive).
+- Lives in deep, dark ocean water (12+ blocks down) in the deep ocean biomes.
+- Snaps up cod, salmon and other fish that come near its lure (and heals from them).
+- Rushes swimmers and bites hard (6 damage). It only hunts players who are in the water.
+- A fish: out of water it flops about and suffocates. 20 health.
+- Drops: cod 0–2, glow ink sac (30%, killed by a player), prismarine crystals (10%).
+
+### 21. Driftcap
+A floating jellyfish of warped fungus from the Warped Forest: a teal domed cap with glowing spots,
+a purple frilled skirt, a faintly glowing core and six trailing twisting-vine tendrils.
+- Drifts slowly 1–3 blocks above the ground and toward anyone nearby.
+- Its tendrils sting (3 damage, Nausea 4 s) and the sting warps you up to 8 blocks away, like
+  chorus fruit.
+- Hit it and it may warp away itself. Fire-immune, never takes fall damage. 14 health.
+- About as common as the Warped Forest's endermen.
+- Drops: twisting vines 0–2, warped fungus 0–1, ender pearl (8%, killed by a player).
+
 ## Friendly
 
 ### 8. Mossback Tortoise
@@ -136,6 +208,36 @@ weathered blue snail shell.
 - Breeds with kelp. Babies get a random shell. 8 health.
 - Drops: nothing on death.
 
+### 22. Meerkat
+A slim sandy meerkat with dark "sunglasses" eye patches, a pale belly and a dark-tipped tail.
+- Lives in groups of 3–5 in Desert, Savanna and Badlands.
+- Lookout: now and then one stands bolt upright on its hind legs to keep watch. If it spots a
+  monster within 16 blocks (a Dune Scorpion buried in the sand included) it chirps the alarm, the
+  monster glows for 6 s, and the rest of the group sits up to look.
+- Scorpion hunters: immune to poison, and when two or more grown-ups are together they gang up on
+  Dune Scorpions.
+- Breeds with spider eyes. 10 health.
+- Drops: nothing.
+
+### 23. Penguin
+A chunky penguin in king-penguin colours: blue-black back, white belly, golden ear patches, a long
+beak with an orange stripe. Chicks are fluffy and grey with a white face.
+- Waddles about in colonies of 3–6 on snowy beaches, frozen oceans and frozen rivers.
+- Belly slide: on ice and snow it flops onto its belly and toboggans along, much faster than it
+  walks.
+- A fast swimmer that holds its breath for two minutes. Keeps clear of polar bears.
+- Breeds with raw cod or salmon. 10 health. Immune to freezing.
+- Drops: feather 0–1.
+
+### 24. Wild Boar
+A bristly dark boar with a crest of stiff bristles down its spine, a flat nose disc and two curved
+ivory tusks. Piglets are striped cream and brown.
+- Roams taigas, forests and dark forests in sounders of 2–4.
+- Neutral: it leaves you alone until you hurt it or one of its piglets. Then the whole sounder
+  charges, head down: 4 damage and a knockback that tosses you up and back.
+- Breeds with mushrooms (red or brown). 20 health.
+- Drops: raw porkchop 1–3, leather 0–1.
+
 ## Pet
 
 ### 10. Wyrmling
@@ -157,6 +259,18 @@ A palm-sized hedgehog: brown-and-cream quills, a pale face, a black button nose,
 - Forager: while following you on grass it sometimes snuffles up sweet berries or a mushroom.
 - 10 health.
 
+### 25. Otter
+A sleek dark-brown river otter with a cream face and chest, whiskers, webbed paws and a thick tail.
+- Lives along rivers (frozen ones too) in ones and twos.
+- Tame with raw cod or salmon (1 in 3). Heals and breeds with them.
+- Tamed: follows its owner and sits when told (use with an empty hand).
+- Swims like a fish and holds its breath for two minutes. With nothing to do in the water it rolls
+  onto its back and floats, paws up.
+- Swim buddy: while its owner swims near it, the owner gets Dolphin's Grace.
+- Fisher: every few minutes in the water it dives and brings something up: mostly cod and salmon,
+  sometimes an ink sac, kelp or a lily pad, and very rarely a nautilus shell.
+- Hunts the fish it swims among. 12 health.
+
 ## Compatibility
 
 - Same Minecraft (26.3), Fabric Loader (0.19.5) and Fabric API (0.161.0+26.3) as Village Friends.
@@ -164,8 +278,8 @@ A palm-sized hedgehog: brown-and-cream quills, a pale face, a black button nose,
   Friends guards and pets treat them like any other monster.
 - RPG add-on (`villagefriends_rpg`): an optional mixin, applied only when the add-on is installed,
   makes its Bestiary count Sporeling, Frostbitten and Lost Miner as Zombies, Briarbones,
-  Gravewarden and Soulpyre as Skeletons, and Dune Scorpion as a Spider. Everything else earns
-  normal kill XP.
+  Gravewarden, Soulpyre and Sculkbones as Skeletons, Dune Scorpion and Dripfang as Spiders, Angler
+  as a Guardian and Driftcap as an Enderman. Everything else earns normal kill XP.
 
 ## Model contracts (art <-> code)
 
@@ -187,8 +301,20 @@ The Java animation code drives these part names:
 | glowmoth | `body`, `head` (child of body), `right_antenna` / `left_antenna` (children of head), `right_wing` / `left_wing` (forewings) and `right_hindwing` / `left_hindwing` (children of body, flapping around z), optional `legs` (child of body) |
 | hermit_crab | `shell` (child of root; always visible), `body` (child of root: everything that pulls inside the shell when hiding), under `body`: `right_claw` / `left_claw`, `right_eye` / `left_eye`, legs `right_leg1..3` / `left_leg1..3` |
 | hedgehog | `body` (with `quills` child), `head` (child of root) with `snout`, `right_front_leg`, `left_front_leg`, `right_hind_leg`, `left_hind_leg`, and `ball` (child of root: the curled-up spiky ball, hidden normally; the code hides everything else when it curls) |
+| scarecrow | zombie humanoid names (4-wide limbs); hat brim and straw tufts are children of them. By day the code puts the arms straight out (zRot ±π/2) |
+| sculkbones | skeleton humanoid names (slim limbs) plus `right_tendril` / `left_tendril` (children of `head`) |
+| vulture | `body`, `neck` (child of body) with `head`, `right_wing` / `left_wing` (children of body, rest pose spread for gliding) each with `right_wing_tip` / `left_wing_tip`, `tail`, `right_leg` / `left_leg`, optional `ruff` |
+| dripfang | `body` with `head` (`right_fang` / `left_fang`), `tail`, legs `right_leg1..3` / `left_leg1..3`; `stalactite` (child of root: the hanging disguise, shown only while hanging, when `body` is hidden) |
+| angler | `body` with `jaw`, `lure_stalk` (with `lure`), `tail` (with `tail_fin`), `right_fin` / `left_fin`, optional `top_fin` |
+| driftcap | `cap` (the bell; the code squashes it to pulse) with `tendril1`..`tendril6` |
+| meerkat | `body` (pivot at the hips) with `head`, `right_front_leg` / `left_front_leg` and `tail`; `right_hind_leg` / `left_hind_leg` (children of root). On watch the code turns `body` straight up |
+| penguin | `body` (pivot at its base) with `head`, `right_flipper` / `left_flipper`; `right_foot` / `left_foot` (children of root). The code tips `body` forward to slide or swim |
+| wild_boar | `body` with `mane` and `tail`, `head` (child of root), `right_front_leg`, `left_front_leg`, `right_hind_leg`, `left_hind_leg` |
+| otter | `body` (pivot at the centre) with `head`, `tail` (with `tail_tip`) and all four legs, so the code can roll it onto its back |
 
 Hitboxes (blocks, width x height): zombies 0.6x1.95, briarbones 0.6x1.99, gravewarden 0.7x2.3
 (rendered at 1.15x), bog lurker 1.2x0.9, gloomwing 0.9x0.6, dune scorpion 1.3x0.7, tortoise
 1.2x0.9, capybara 0.9x0.9, wyrmling 0.6x0.6, lost miner 0.6x1.95, soulpyre 0.6x1.99, glowmoth
-0.7x0.6, hermit crab 0.5x0.45, hedgehog 0.45x0.4.
+0.7x0.6, hermit crab 0.5x0.45, hedgehog 0.45x0.4, scarecrow 0.6x1.95, sculkbones 0.6x1.99, vulture 0.9x0.7,
+dripfang 0.9x0.55, angler 0.9x0.8, driftcap 0.8x1.2, meerkat 0.4x0.6, penguin 0.55x0.95, wild boar
+0.9x0.9, otter 0.6x0.5.

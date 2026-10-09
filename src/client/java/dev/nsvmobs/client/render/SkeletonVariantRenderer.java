@@ -2,6 +2,7 @@ package dev.nsvmobs.client.render;
 
 import dev.nsvmobs.client.model.Geometry;
 import dev.nsvmobs.client.model.GravewardenModel;
+import dev.nsvmobs.client.model.SculkbonesModel;
 
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
@@ -23,7 +24,11 @@ public class SkeletonVariantRenderer extends AbstractSkeletonRenderer<AbstractSk
     }
 
     private static SkeletonModel<SkeletonRenderState> model(ModelPart root, String id) {
-        return id.equals("gravewarden") ? new GravewardenModel(root) : new SkeletonModel<>(root);
+        return switch (id) {
+            case "gravewarden" -> new GravewardenModel(root);
+            case "sculkbones" -> new SculkbonesModel(root);
+            default -> new SkeletonModel<>(root);
+        };
     }
 
     @Override

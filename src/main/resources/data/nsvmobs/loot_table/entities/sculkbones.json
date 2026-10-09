@@ -1,0 +1,108 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              }
+            },
+            {
+              "type": "minecraft:enchanted_count_increase",
+              "enchantment": "minecraft:looting",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:arrow",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              }
+            },
+            {
+              "type": "minecraft:enchanted_count_increase",
+              "enchantment": "minecraft:looting",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sculk"
+        }
+      ],
+      "condition": {
+        "type": "minecraft:random_chance_with_enchanted_bonus",
+        "enchantment": "minecraft:looting",
+        "unenchanted_chance": 0.15,
+        "enchanted_chance": {
+          "type": "minecraft:linear",
+          "base": 0.16999999999999998,
+          "per_level_above_first": 0.01
+        }
+      }
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:echo_shard"
+        }
+      ],
+      "condition": {
+        "type": "minecraft:all_of",
+        "terms": [
+          {
+            "type": "minecraft:killed_by_player"
+          },
+          {
+            "type": "minecraft:random_chance_with_enchanted_bonus",
+            "enchantment": "minecraft:looting",
+            "unenchanted_chance": 0.02,
+            "enchanted_chance": {
+              "type": "minecraft:linear",
+              "base": 0.04,
+              "per_level_above_first": 0.01
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "random_sequence": "nsvmobs:entities/sculkbones"
+}

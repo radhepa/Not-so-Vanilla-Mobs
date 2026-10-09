@@ -59,7 +59,8 @@ src/client/java/dev/nsvmobs/client/
   model/CritterModel.java   base model for non-humanoids (head look, quadruped walk)
   model/<Mob>Model.java     per-mob animation
   render/                   ZombieVariantRenderer, SkeletonVariantRenderer, CritterRenderer,
-                            CritterRenderState, GlowLayer
+                            CritterRenderState, GlowLayer, ScarecrowRenderer (zombie animation
+                            with a daytime pose)
 src/client/resources/assets/nsvmobs/geometry/   generated models (JSON)
 src/main/resources/                             generated textures, lang, loot, tags; fabric.mod.json
 src/gametest/                                   client game test (spawns every catalogued mob)
@@ -119,8 +120,9 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
   children of those parts.
 - **Everything else** uses `CritterRenderer` with its own `CritterModel` subclass. The renderer's
   lambda copies entity state into `CritterRenderState`; add a field there when a new mob needs one.
-- **Texture variants** (like the Hermit Crab's three shells): pass a list of texture names to
-  `CritterRenderer` and set `state.variant` in the lambda. The art script saves the extra
+- **Texture variants** (like the Hermit Crab's three shells, or the Penguin's chick and the Wild
+  Boar's striped piglet): pass a list of texture names to `CritterRenderer` and set `state.variant`
+  in the lambda (e.g. `e.isBaby() ? 1 : 0`). The art script saves the extra
   textures with `Model(..., texture_id="<id>_<variant>").save(geometry=False)`.
 - **Hide-and-show poses** (a crab in its shell, a curled-up hedgehog): give the model a part for the
   alternate shape, or group the parts that disappear under one parent, and toggle `visible` in
@@ -178,6 +180,14 @@ Needs Python 3 and Pillow. The previewer also needs Microsoft Edge.
   - `c.glow(x, y, colour)` also writes the pixel to the emissive layer.
   - `c.clear(x, y)` makes a pixel transparent (renderers use cutout).
 - **Overlapping texture regions** raise an error. Mirrored cubes may share a region on purpose.
+- **Pitfalls** (each one showed up while making a mob):
+  - Use whole-number cube sizes and get fractions with `inflate`. A size like 1.5 samples the
+    transparent texel next to the face and shows a thin sliver.
+  - A flat plane (size 0 on one axis) needs the same paint on both of its faces, or they z-fight.
+  - A cutout plane whose texture sits flush against another cube's pixels shows a hairline seam
+    along its cut edge. Leave a 1 px empty border around it on the sheet.
+  - The glow layer is added on top of the base texture, so a bright base under a glow pixel washes
+    out to white. Give glowing pixels a dim base colour.
 
 ### Generated files are committed, never hand-edited
 Geometry, textures, eggs, lang, item models, loot tables and the `data/minecraft/tags/entity_type`
@@ -222,7 +232,8 @@ Things that differ from older versions and from most tutorials:
 - **Model layers:** register with Fabric's `ModelLayerRegistry` (not `EntityModelLayerRegistry`).
   Renderers use render states: `extractRenderState` fills a state, and the model's `setupAnim(state)`
   reads it.
-- **Babies:** scaled by `getAgeScale()` on the entity.
+- **Babies:** the entity says how small it is with `getAgeScale()`, but the renderer no longer shrinks
+  it (vanilla swaps in separate baby models). `CritterRenderer.scale` applies the age scale itself.
 - **Spawn eggs:** `new Item.Properties().setId(key).spawnEgg(type)`. Each egg has its own texture and
   an item model in `assets/<ns>/items/`.
 - **Loot tables:** use `"modifier": [{"type": ...}]` and `"condition": {...}`, not `functions` /

@@ -201,7 +201,7 @@ def main():
         mobs = sorted(f[:-5] for f in os.listdir(GEO) if f.endswith(".json"))
     views = [35] if a.views == 1 else [0, 35, 90, 180]
     w, h = (int(v) for v in a.size.split("x"))
-    out = a.out or os.path.join(OUT, ("contact" if a.all else "_".join(mobs)) + ".png")
+    out = os.path.abspath(a.out) if a.out else os.path.join(OUT, ("contact" if a.all else "_".join(mobs)) + ".png")
     print(render(mobs, views, out, (w, h), texture=a.texture))
 
 
