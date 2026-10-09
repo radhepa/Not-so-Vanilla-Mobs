@@ -12,13 +12,16 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.state.HoldingEntityRenderState;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Mob;
 
 /** Renderer for the non-humanoid mobs: one baked model, one texture, an optional glow layer. */
 public class CritterRenderer<T extends Mob> extends MobRenderer<T, CritterRenderState, CritterModel> {
+    private final String id;
     private final List<Identifier> textures;
     private final BiConsumer<T, CritterRenderState> extract;
+    private boolean carries;
 
     public CritterRenderer(EntityRendererProvider.Context context, String id, Function<ModelPart, CritterModel> model,
                            float shadow, BiConsumer<T, CritterRenderState> extract) {
@@ -32,14 +35,28 @@ public class CritterRenderer<T extends Mob> extends MobRenderer<T, CritterRender
     public CritterRenderer(EntityRendererProvider.Context context, String id, Function<ModelPart, CritterModel> model,
                            float shadow, BiConsumer<T, CritterRenderState> extract, List<String> textureIds) {
         super(context, model.apply(context.bakeLayer(Geometry.layer(id))), shadow);
+        this.id = id;
         this.textures = textureIds.stream().map(t -> Identifier.fromNamespaceAndPath("nsvmobs", "textures/entity/" + t + ".png")).toList();
         this.extract = extract;
         if (GlowLayer.exists(id)) this.addLayer(new GlowLayer<>(this, id));
     }
 
+    /** Also draw the mob's main-hand item at this model part (its mouth or bill). */
+    public CritterRenderer<T> carriesItem(String part) {
+        this.carries = true;
+        this.addLayer(new MouthItemLayer(this, this.id, part));
+        return this;
+    }
+
     @Override
     public Identifier getTextureLocation(CritterRenderState state) {
         return this.textures.get(Math.floorMod(state.variant, this.textures.size()));
+    }
+
+    /** The whole model is multiplied by {@link CritterRenderState#tint} (the chameleon's camouflage). */
+    @Override
+    protected int getModelTint(CritterRenderState state) {
+        return state.tint;
     }
 
     /** 26.3 doesn't shrink babies itself (vanilla swaps in separate baby models), so scale by the age scale here. */
@@ -57,6 +74,7 @@ public class CritterRenderer<T extends Mob> extends MobRenderer<T, CritterRender
     public void extractRenderState(T entity, CritterRenderState state, float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
         state.aggressive = entity.isAggressive();
+        if (this.carries) HoldingEntityRenderState.extractHoldingEntityRenderState(entity, state, this.itemModelResolver);
         this.extract.accept(entity, state);
     }
 }

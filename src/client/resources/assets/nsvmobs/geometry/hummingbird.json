@@ -1,0 +1,214 @@
+{
+ "texture": [
+  32,
+  32
+ ],
+ "parts": [
+  {
+   "name": "body",
+   "parent": "",
+   "pivot": [
+    0,
+    20,
+    0
+   ],
+   "rotation": [
+    -0.5,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      -1.5,
+      -1.5,
+      -2
+     ],
+     "size": [
+      3,
+      3,
+      5
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      9
+     ],
+     "from": [
+      -1,
+      -1,
+      3
+     ],
+     "size": [
+      2,
+      2,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "body",
+   "pivot": [
+    0,
+    -0.6,
+    -1.7
+   ],
+   "rotation": [
+    0.5,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      17,
+      0
+     ],
+     "from": [
+      -1.5,
+      -2,
+      -2.5
+     ],
+     "size": [
+      3,
+      3,
+      3
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      13,
+      7
+     ],
+     "from": [
+      -0.5,
+      -0.5,
+      -6.5
+     ],
+     "size": [
+      1,
+      1,
+      4
+     ],
+     "inflate": -0.25,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_wing",
+   "parent": "body",
+   "pivot": [
+    -1.4,
+    -1.4,
+    -0.5
+   ],
+   "rotation": [
+    0.5,
+    0.25,
+    0.1
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      13
+     ],
+     "from": [
+      -6,
+      0,
+      -1
+     ],
+     "size": [
+      6,
+      0,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_wing",
+   "parent": "body",
+   "pivot": [
+    1.4,
+    -1.4,
+    -0.5
+   ],
+   "rotation": [
+    0.5,
+    -0.25,
+    -0.1
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      13
+     ],
+     "from": [
+      0,
+      0,
+      -1
+     ],
+     "size": [
+      6,
+      0,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "tail",
+   "parent": "body",
+   "pivot": [
+    0,
+    0,
+    3.5
+   ],
+   "rotation": [
+    0.15,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      17,
+      7
+     ],
+     "from": [
+      -2,
+      0,
+      0
+     ],
+     "size": [
+      4,
+      0,
+      3
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  }
+ ]
+}

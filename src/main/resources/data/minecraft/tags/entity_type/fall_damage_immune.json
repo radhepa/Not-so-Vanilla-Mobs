@@ -3,8 +3,12 @@
   "values": [
     "nsvmobs:driftcap",
     "nsvmobs:dripfang",
+    "nsvmobs:flamingo",
     "nsvmobs:gloomwing",
     "nsvmobs:glowmoth",
+    "nsvmobs:griffin",
+    "nsvmobs:hummingbird",
+    "nsvmobs:owl",
     "nsvmobs:vulture",
     "nsvmobs:wyrmling"
   ]

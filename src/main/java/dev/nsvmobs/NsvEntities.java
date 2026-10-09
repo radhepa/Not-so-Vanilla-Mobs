@@ -1,31 +1,46 @@
 package dev.nsvmobs;
 
 import dev.nsvmobs.entity.Angler;
+import dev.nsvmobs.entity.Beaver;
 import dev.nsvmobs.entity.BogLurker;
 import dev.nsvmobs.entity.Briarbones;
 import dev.nsvmobs.entity.Capybara;
+import dev.nsvmobs.entity.Chameleon;
+import dev.nsvmobs.entity.CinderNewt;
+import dev.nsvmobs.entity.Deer;
 import dev.nsvmobs.entity.Driftcap;
 import dev.nsvmobs.entity.Dripfang;
 import dev.nsvmobs.entity.DuneScorpion;
+import dev.nsvmobs.entity.Flamingo;
 import dev.nsvmobs.entity.Frostbitten;
 import dev.nsvmobs.entity.Gloomwing;
 import dev.nsvmobs.entity.Glowmoth;
+import dev.nsvmobs.entity.Goose;
 import dev.nsvmobs.entity.Gravewarden;
+import dev.nsvmobs.entity.Griffin;
 import dev.nsvmobs.entity.Hedgehog;
 import dev.nsvmobs.entity.HermitCrab;
+import dev.nsvmobs.entity.Hummingbird;
 import dev.nsvmobs.entity.LostMiner;
 import dev.nsvmobs.entity.Meerkat;
 import dev.nsvmobs.entity.MossbackTortoise;
+import dev.nsvmobs.entity.Ostrich;
 import dev.nsvmobs.entity.Otter;
+import dev.nsvmobs.entity.Owl;
 import dev.nsvmobs.entity.Penguin;
+import dev.nsvmobs.entity.Raccoon;
+import dev.nsvmobs.entity.Rattlesnake;
 import dev.nsvmobs.entity.Scarecrow;
 import dev.nsvmobs.entity.Sculkbones;
+import dev.nsvmobs.entity.Seal;
+import dev.nsvmobs.entity.Skunk;
 import dev.nsvmobs.entity.Soulpyre;
 import dev.nsvmobs.entity.Sporeling;
 import dev.nsvmobs.entity.Vulture;
 import dev.nsvmobs.entity.WildBoar;
 import dev.nsvmobs.entity.Wyrmling;
 import dev.nsvmobs.entity.WyrmlingEmber;
+import dev.nsvmobs.entity.Yak;
 import dev.nsvmobs.registry.MobEntry;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -226,6 +241,81 @@ public final class NsvEntities {
             .spawnsIn(8, 2, 4, Biomes.TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA, Biomes.FOREST, Biomes.DARK_FOREST)
             .register();
 
+    public static final EntityType<Deer> DEER = MobEntry.builder("deer", Deer::new, MobCategory.CREATURE)
+            .size(0.8F, 1.4F, 1.25F).type(t -> t.clientTrackingRange(10))
+            .attributes(Deer::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(8, 2, 4, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.TAIGA, Biomes.MEADOW)
+            .register();
+
+    /** Neutral: territorial around its goslings. */
+    public static final EntityType<Goose> GOOSE = MobEntry.builder("goose", Goose::new, MobCategory.CREATURE)
+            .size(0.6F, 1.0F, 0.9F).type(t -> t.clientTrackingRange(10))
+            .attributes(Goose::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(8, 3, 5, Biomes.PLAINS, Biomes.SUNFLOWER_PLAINS, Biomes.RIVER, Biomes.MEADOW)
+            .register();
+
+    public static final EntityType<Yak> YAK = MobEntry.builder("yak", Yak::new, MobCategory.CREATURE)
+            .size(1.3F, 1.5F, 1.3F).type(t -> t.clientTrackingRange(10))
+            .attributes(Yak::createAttributes)
+            .spawnRule(Yak::checkSpawnRules)
+            .spawnsIn(6, 2, 4, Biomes.SNOWY_SLOPES, Biomes.GROVE, Biomes.SNOWY_PLAINS, Biomes.SNOWY_TAIGA)
+            .register();
+
+    public static final EntityType<Flamingo> FLAMINGO = MobEntry.builder("flamingo", Flamingo::new, MobCategory.CREATURE)
+            .size(0.6F, 1.5F, 1.4F).type(t -> t.clientTrackingRange(10))
+            .attributes(Flamingo::createAttributes)
+            .spawnRule(Flamingo::checkSpawnRules)
+            .spawnsIn(8, 3, 6, Biomes.MANGROVE_SWAMP, Biomes.SWAMP)
+            .spawnsIn(3, 3, 5, Biomes.BEACH)
+            .register();
+
+    public static final EntityType<Hummingbird> HUMMINGBIRD = MobEntry.builder("hummingbird", Hummingbird::new, MobCategory.CREATURE)
+            .size(0.35F, 0.35F, 0.25F).type(t -> t.clientTrackingRange(10))
+            .attributes(Hummingbird::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(6, 1, 2, Biomes.JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS)
+            .register();
+
+    public static final EntityType<Seal> SEAL = MobEntry.builder("seal", Seal::new, MobCategory.CREATURE)
+            .size(0.9F, 0.6F, 0.45F).type(t -> t.clientTrackingRange(10))
+            .attributes(Seal::createAttributes)
+            .spawnRule(Seal::checkSpawnRules)
+            .spawnsIn(8, 2, 4, Biomes.STONY_SHORE, Biomes.SNOWY_BEACH, Biomes.COLD_OCEAN, Biomes.DEEP_COLD_OCEAN)
+            .register();
+
+    public static final EntityType<Beaver> BEAVER = MobEntry.builder("beaver", Beaver::new, MobCategory.CREATURE)
+            .size(0.7F, 0.6F, 0.5F).type(t -> t.clientTrackingRange(10))
+            .attributes(Beaver::createAttributes)
+            .spawnRule(Beaver::checkSpawnRules)
+            .spawnsIn(6, 1, 3, Biomes.RIVER, Biomes.SWAMP, Biomes.TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA)
+            .register();
+
+    /** Neutral: warns, then sprays. Never bites. */
+    public static final EntityType<Skunk> SKUNK = MobEntry.builder("skunk", Skunk::new, MobCategory.CREATURE)
+            .size(0.6F, 0.5F, 0.4F).type(t -> t.clientTrackingRange(10))
+            .attributes(Skunk::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(5, 1, 2, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.PLAINS, Biomes.MEADOW)
+            .register();
+
+    /** Neutral: rattles a warning, bites only if you keep coming. */
+    public static final EntityType<Rattlesnake> RATTLESNAKE = MobEntry.builder("rattlesnake", Rattlesnake::new, MobCategory.CREATURE)
+            .size(0.9F, 0.35F, 0.25F).type(t -> t.clientTrackingRange(10))
+            .attributes(Rattlesnake::createAttributes)
+            .spawnRule(Rattlesnake::checkSpawnRules)
+            .spawnsIn(6, 1, 2, Biomes.BADLANDS, Biomes.WOODED_BADLANDS, Biomes.ERODED_BADLANDS, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA)
+            .register();
+
+    /** Neutral, in the Nether: walks on lava; the group bites back with fire. */
+    public static final EntityType<CinderNewt> CINDER_NEWT = MobEntry.builder("cinder_newt", CinderNewt::new, MobCategory.CREATURE)
+            .size(0.7F, 0.4F, 0.3F).type(t -> t.clientTrackingRange(10).fireImmune())
+            .attributes(CinderNewt::createAttributes)
+            .spawnRule(CinderNewt::checkSpawnRules)
+            .spawnsIn(20, 2, 4, Biomes.BASALT_DELTAS, Biomes.NETHER_WASTES, Biomes.CRIMSON_FOREST)
+            .register();
+
     // -- pets -------------------------------------------------------------------------------------
     public static final EntityType<Wyrmling> WYRMLING = MobEntry.builder("wyrmling", Wyrmling::new, MobCategory.CREATURE)
             .size(0.6F, 0.6F, 0.45F).type(EntityType.Builder::fireImmune)
@@ -246,6 +336,43 @@ public final class NsvEntities {
             .attributes(Otter::createAttributes)
             .spawnRule(Otter::checkSpawnRules)
             .spawnsIn(6, 1, 2, Biomes.RIVER, Biomes.FROZEN_RIVER)
+            .register();
+
+    public static final EntityType<Owl> OWL = MobEntry.builder("owl", Owl::new, MobCategory.CREATURE)
+            .size(0.5F, 0.8F, 0.65F).type(t -> t.clientTrackingRange(10))
+            .attributes(Owl::createAttributes)
+            .spawnRule(Owl::checkSpawnRules)
+            .spawnsIn(4, 1, 2, Biomes.DARK_FOREST, Biomes.PALE_GARDEN, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA, Biomes.SNOWY_TAIGA)
+            .register();
+
+    public static final EntityType<Raccoon> RACCOON = MobEntry.builder("raccoon", Raccoon::new, MobCategory.CREATURE)
+            .size(0.6F, 0.6F, 0.5F).type(t -> t.clientTrackingRange(10))
+            .attributes(Raccoon::createAttributes)
+            .spawnRule(Raccoon::checkSpawnRules)
+            .spawnsIn(5, 1, 2, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.DARK_FOREST, Biomes.SWAMP)
+            .register();
+
+    public static final EntityType<Chameleon> CHAMELEON = MobEntry.builder("chameleon", Chameleon::new, MobCategory.CREATURE)
+            .size(0.5F, 0.4F, 0.3F).type(t -> t.clientTrackingRange(10))
+            .attributes(Chameleon::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(4, 1, 1, Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE)
+            .register();
+
+    /** A mount: tamed, saddled and ridden like a horse. */
+    public static final EntityType<Ostrich> OSTRICH = MobEntry.builder("ostrich", Ostrich::new, MobCategory.CREATURE)
+            .size(0.9F, 1.9F, 1.8F).type(t -> t.passengerAttachments(1.2F).clientTrackingRange(10))
+            .attributes(Ostrich::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(4, 2, 3, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU)
+            .register();
+
+    /** A flying mount: tamed and saddled like a horse, then flown where its rider looks. */
+    public static final EntityType<Griffin> GRIFFIN = MobEntry.builder("griffin", Griffin::new, MobCategory.CREATURE)
+            .size(1.4F, 1.7F, 1.55F).type(t -> t.passengerAttachments(1.45F).clientTrackingRange(10))
+            .attributes(Griffin::createAttributes)
+            .spawnRule(Griffin::checkSpawnRules)
+            .spawnsIn(2, 1, 2, Biomes.STONY_PEAKS, Biomes.JAGGED_PEAKS, Biomes.FROZEN_PEAKS, Biomes.MEADOW)
             .register();
 
     // -- projectiles and other non-mob entities -------------------------------------------------

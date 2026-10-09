@@ -40,6 +40,11 @@ public final class Geometry {
 
     /** A named part anywhere in a baked model, found through the parent chain in the geometry file. */
     public static ModelPart part(ModelPart root, String id, String name) {
+        return path(root, id, name).getLast();
+    }
+
+    /** The parts from {@code root} down to the named part (both included), to transform through them. */
+    public static java.util.List<ModelPart> path(ModelPart root, String id, String name) {
         Map<String, String> parents = PARENTS.computeIfAbsent(id, k -> {
             Map<String, String> m = new HashMap<>();
             for (JsonElement el : read(k).getAsJsonArray("parts")) {
@@ -49,11 +54,16 @@ public final class Geometry {
             return m;
         });
         if (!parents.containsKey(name)) throw new IllegalArgumentException(id + " has no part " + name);
-        java.util.ArrayDeque<String> path = new java.util.ArrayDeque<>();
-        for (String n = name; !n.isEmpty(); n = parents.get(n)) path.push(n);
+        java.util.ArrayDeque<String> names = new java.util.ArrayDeque<>();
+        for (String n = name; !n.isEmpty(); n = parents.get(n)) names.push(n);
+        java.util.List<ModelPart> chain = new java.util.ArrayList<>();
         ModelPart part = root;
-        for (String n : path) part = part.getChild(n);
-        return part;
+        chain.add(part);
+        for (String n : names) {
+            part = part.getChild(n);
+            chain.add(part);
+        }
+        return chain;
     }
 
     /** Like {@link #part} but null when the model doesn't have that (optional) part. */
