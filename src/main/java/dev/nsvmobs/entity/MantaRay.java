@@ -238,11 +238,19 @@ public class MantaRay extends WaterAnimal implements PlayerRideableJumping {
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (hand == InteractionHand.MAIN_HAND && player.getItemInHand(hand).isEmpty() && this.isInWater() && !this.isVehicle()
-                && !player.isSecondaryUseActive()) {
+                && !this.isBreaching() && !player.isSecondaryUseActive()) {
             if (!this.level().isClientSide()) player.startRiding(this);
             return InteractionResult.SUCCESS;
         }
         return super.mobInteract(player, hand);
+    }
+
+    /** Once ridden, the rider's client simulates the movement and the server never travels, so a
+     *  leap the server had started would never end there. */
+    @Override
+    protected void addPassenger(Entity passenger) {
+        super.addPassenger(passenger);
+        if (!this.level().isClientSide()) this.leapTicks = 0;
     }
 
     @Override
@@ -255,15 +263,18 @@ public class MantaRay extends WaterAnimal implements PlayerRideableJumping {
     @Override
     protected void tickRidden(Player rider, Vec3 input) {
         super.tickRidden(rider, input);
-        float yaw = this.getYRot() + Mth.clamp(Mth.wrapDegrees(rider.getYRot() - this.getYRot()) * 0.3F, -15.0F, 15.0F);
-        float pitch = this.getXRot();
-        if (this.leapTicks == 0) {
-            Vec3 v = this.getDeltaMovement();
-            float swim = v.lengthSqr() > 0.004 ? (float) (Mth.atan2(-v.y, v.horizontalDistance()) * Mth.RAD_TO_DEG) : 0.0F;
-            pitch = Mth.rotLerp(0.25F, pitch, Mth.clamp(swim, -45.0F, 45.0F));
+        if (this.isLocalInstanceAuthoritative()) {
+            // only the side that simulates the swim steers; the server takes the rider's result as sent
+            float yaw = this.getYRot() + Mth.clamp(Mth.wrapDegrees(rider.getYRot() - this.getYRot()) * 0.3F, -15.0F, 15.0F);
+            float pitch = this.getXRot();
+            if (this.leapTicks == 0) {
+                Vec3 v = this.getDeltaMovement();
+                float swim = v.lengthSqr() > 0.004 ? (float) (Mth.atan2(-v.y, v.horizontalDistance()) * Mth.RAD_TO_DEG) : 0.0F;
+                pitch = Mth.rotLerp(0.25F, pitch, Mth.clamp(swim, -45.0F, 45.0F));
+            }
+            this.setRot(yaw, pitch);
         }
-        this.setRot(yaw, pitch);
-        this.yRotO = this.yBodyRot = this.yHeadRot = yaw;
+        this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
         if (this.isLocalInstanceAuthoritative() && this.pendingStroke > 0.0F) {
             if (this.isInWater() && this.leapTicks == 0) {
                 if (this.depth() <= BREACH_DEPTH) this.leap(this.pendingStroke);

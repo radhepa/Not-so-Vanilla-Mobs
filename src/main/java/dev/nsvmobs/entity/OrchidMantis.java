@@ -142,6 +142,7 @@ public class OrchidMantis extends Animal {
         super.aiStep();
         // it flutters down rather than falling, like a chicken
         Vec3 v = this.getDeltaMovement();
+        boolean dropping = !this.onGround() && v.y < -0.12;
         if (!this.onGround() && v.y < 0.0) this.setDeltaMovement(v.multiply(1.0, 0.6, 1.0));
         if (!(this.level() instanceof ServerLevel level)) return;
 
@@ -150,7 +151,7 @@ public class OrchidMantis extends Animal {
         this.tickAction(level);
 
         boolean airborne = !this.onGround() && !this.isInWater();
-        this.entityData.set(FLUTTERING, airborne && (this.isFluttering() || this.getDeltaMovement().y < -0.12));
+        this.entityData.set(FLUTTERING, airborne && (this.isFluttering() || dropping));
         boolean moving = this.getDeltaMovement().horizontalDistanceSqr() > 2.5E-4 || airborne;
         this.stillTicks = this.action() == NONE && this.getTarget() == null && !moving ? this.stillTicks + 1 : 0;
         this.entityData.set(STILL, this.stillTicks > 10);

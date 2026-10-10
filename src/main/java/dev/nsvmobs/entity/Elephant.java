@@ -201,7 +201,7 @@ public class Elephant extends Animal {
             this.tickSpray(level);
         } else if (target == null && !this.isThreatening()) {
             if (this.hasWater()) {
-                if (this.tickCount % 2 == 0) this.lookForFire(level);
+                if ((this.tickCount + this.getId()) % 10 == 0) this.lookForFire(level);
             } else if (!this.isNoAi() && this.random.nextInt(1500) == 0 && this.dustWeather(level)) {
                 this.startDust();
             }
@@ -240,7 +240,7 @@ public class Elephant extends Animal {
             this.startSpray(best, null);
             return;
         }
-        if (this.tickCount % 20 == 0 && Griefing.allowed(level)) {
+        if ((this.tickCount + this.getId()) % 60 == 0 && Griefing.allowed(level)) {
             BlockPos fire = this.nearestFire(level);
             if (fire != null) this.startSpray(null, Vec3.atCenterOf(fire));
         }

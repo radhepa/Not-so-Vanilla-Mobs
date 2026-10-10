@@ -248,6 +248,7 @@ public class Cheetah extends TamableAnimal {
         boolean can = this.isTame() && !this.isBaby() && !this.isOrderedToSit() && !this.isWinded()
                 && this.getOwner() instanceof Player owner && owner.isAlive() && !owner.isSpectator()
                 && owner.level() == level && owner.isSprinting() && !owner.isPassenger()
+                && !owner.isInWater() && !owner.isSwimming() && !owner.getAbilities().flying && !owner.isFallFlying()
                 && this.distanceToSqr(owner) <= (this.pacing ? 16.0 * 16.0 : 10.0 * 10.0)
                 && (this.pacing || this.mode() == IDLE);
         if (can) {
