@@ -1,6 +1,6 @@
 # Not-So-Vanilla Mobs: mob design
 
-Fifty new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.26 and its RPG add-on.
+Fifty-five new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.26 and its RPG add-on.
 
 | # | Mob | Kind | Where | Added |
 |---|-----|------|-------|-------|
@@ -54,6 +54,11 @@ Fifty new mobs for Minecraft 26.3 (Fabric). Works alongside Village Friends 2.26
 | 48 | Chameleon | pet | Jungle, Bamboo Jungle, Sparse Jungle | 1.4 |
 | 49 | Ostrich | mount | Savanna, Savanna Plateau | 1.4 |
 | 50 | Griffin | flying mount | Stony, Jagged and Frozen Peaks, Meadow (rare) | 1.4 |
+| 51 | Cheetah | pet | Savanna, Savanna Plateau, Windswept Savanna | 1.5 |
+| 52 | Elephant | neutral | Savanna, Savanna Plateau (rare) | 1.5 |
+| 53 | Kangaroo | neutral | Badlands, Wooded Badlands, Windswept Savanna | 1.5 |
+| 54 | Orchid Mantis | neutral | Cherry Grove, Flower Forest | 1.5 |
+| 55 | Manta Ray | friendly (swimming) | Warm Ocean, Lukewarm and Deep Lukewarm Ocean | 1.5 |
 
 ## Hostile
 
@@ -534,6 +539,71 @@ yellow eyes, a flat tail and splayed legs. Its spots and belly glow in the dark.
   health.
 - Drops: magma cream 0–1.
 
+### 52. Elephant
+A savanna elephant: wrinkled grey hide, darker in the creases and dusted red-brown along the back,
+huge fan-shaped ears it flaps to keep cool, a long jointed trunk, short ivory tusks, small lashed
+eyes, pillar legs with pale toenails, and a thin tail ending in a black tuft. Calves are small and
+fuzzy, with little ears and no tusks.
+- Small herds of 2–4 on savannas (rare). Calves follow the grown-ups.
+- Trunk shower: at water it drinks and fills its trunk (you can also give it a water bucket). With
+  a trunkful it hoses down any burning creature within 8 blocks (players, villagers and animals,
+  never monsters), putting it out, and puts out fire around it (only if `mobGriefing`, never on
+  netherrack or other ever-burning blocks, and never campfires).
+- On hot, dry afternoons with an empty trunk it blows dust over its back instead.
+- Neutral: hurt one and it flares its ears, raises its trunk and trumpets for a second, then
+  charges: 10 damage and a big launch. The grown-ups of its herd join in. Get close to a calf and
+  the adults warn you off the same way, without charging. It calms down once you're 16 blocks away.
+- Heals and breeds with melon slices, which also tempt it. Hard to knock back. 80 health, 4 armour.
+- Drops: leather 1–3.
+
+### 53. Kangaroo
+A red kangaroo: a rusty red coat with a cream belly and muzzle, a white cheek stripe, tall upright
+ears, small dexterous forearms, huge hind feet and a thick tail it leans on. Bucks are red and
+brawny; does are a soft blue-grey and have a pouch. Joeys are pale and big-eared.
+- Mobs of 2–4 in the badlands and on windswept savannas.
+- Hops everywhere, in long bounds. When it rests it lies on its side, propped up on one elbow.
+- Pouch: a doe carries her joey in her pouch. When she's frightened (hurt, or a player sprints
+  close by) or on the move, her joey hops in, head and paws poking out. When she's calm it hops out
+  and grazes close by.
+- Boxer: hit a buck and it rears up on its tail and boxes back: quick jabs (3 damage, strong
+  knockback), and every third blow a two-footed kick (7 damage) that launches you. Does bound away
+  instead. Bucks sometimes spar with each other for fun (no harm done).
+- Heals and breeds with wheat. Bucks 30 health, does 24.
+- Drops: leather 0–2.
+
+### 54. Orchid Mantis
+A giant orchid mantis, about knee-high: a pearly white body blushing to rose pink, four walking
+legs with broad petal-shaped lobes, an abdomen curled up like a petal, a triangular head with two
+big green compound eyes and fine antennae, spiked raptorial forelegs folded under its chest, and
+pink wings with a green eye-spot folded flat on its back.
+- Cherry Groves, and now and then Flower Forests.
+- Blossom disguise: it stands still among the flowers, swaying gently like a bloom in the breeze,
+  and makes no sound. The only giveaway: its head turns to follow whatever moves.
+- Ambush: anything small that wanders within reach (rabbits, chickens, glowmoths, silverfish,
+  endermites) is snatched. The forelegs snap out faster than you can blink.
+- Walk right up to it (within 2 blocks) without crouching and it strikes you too: 4 damage, and
+  you're snagged, pulled in and held still for a second and a half. Hitting it breaks the hold.
+  Then it flares its wings to show the eye-spots, forelegs raised, and settles back into its
+  disguise once you back off. Crouch past it and it lets you be.
+- Hit it and it fights: strikes (4) and fluttering hops. It never bothers villagers.
+- No fall damage (it flutters). Bane of Arthropods works on it. 16 health.
+- Drops: pink petals 1–3.
+
+### 55. Manta Ray
+A great manta ray, almost three blocks from wingtip to wingtip: inky black on top with two pale
+chevron patches on its shoulders, white underneath and freckled with dark spots, two curled
+cephalic fins either side of a wide square mouth, a small dorsal fin and a long whip of a tail.
+- Warm and lukewarm oceans, in ones and twos. It glides in slow, wide loops with lazy wing beats,
+  near the surface by day and deeper at night.
+- Breach: now and then it races up and leaps clear out of the water, then smacks back down with a
+  big splash.
+- Hitch a ride: swim up to one and use it with an empty hand to grab on. No taming, no saddle.
+  - Hold forward and it swims where you look, faster than any swimmer.
+  - Let go of forward and it glides to a stop.
+  - Jump (charge the jump bar) for a powerful stroke; at the surface it breaches with you aboard.
+  - Crouch to let go. It won't leave the water: if it ends up on land, you're dropped off.
+- Gentle: it never attacks, and when hurt it speeds away. Can't be leashed. 30 health.
+
 ## Pets and mounts
 
 ### 10. Wyrmling
@@ -641,12 +711,36 @@ white and buff, with stubby wings.
 - Heals with raw meat. Breeds with golden apples. 30 health.
 - Drops: feather 1–3.
 
+### 51. Cheetah
+A lean savanna cat built for speed, nothing like a heavy panther or a stubby ocelot: a small round
+head with short round ears, amber eyes and black "tear lines" running from the eyes down to the
+corners of the mouth; a deep chest, a narrow waist and very long, slender legs; a golden coat with
+solid round black spots, a white throat and belly; a long tail, spotted and then ringed black, with
+a white tip. Cubs are smoky grey, with a long silver-white mantle of fluff down the neck and back.
+- Lives on savannas in ones and twos (a mother and her cub). By day it lounges in the grass, or sits
+  up on watch, scanning the plains.
+- Sprinter: a wild adult hunts rabbits and chickens. It creeps up low, then bursts into a sprint at
+  more than twice a sprinting player's speed, for a few seconds at most. Afterwards, catch or miss,
+  it's winded: it pants with its tongue out and only walks for 30 s.
+- Shy: a wild cheetah walks away from anyone within 6 blocks who isn't crouching, and bolts if
+  hurt. It never fights back.
+- Tame with raw chicken or raw rabbit (1 in 3). Heals with any raw meat; breeds with raw chicken
+  or raw rabbit.
+- Tamed: follows its owner and sits when told (use with an empty hand).
+- Sprint partner: when its owner sprints on foot within 10 blocks of it, it bolts alongside and the
+  owner gets Speed II for as long as they keep sprinting, up to 10 s. Then it's winded for 30 s.
+- Courser: it sprints at mobs that hurt its owner or that its owner attacks, and pounces on them
+  (6 damage, and the target is slowed for a moment). Then it's winded and fights at a walk (bites
+  for 4). Like a wolf, it leaves creepers alone.
+- No fall damage. 20 health.
+
 ## Compatibility
 
 - Same Minecraft (26.3), Fabric Loader (0.19.5) and Fabric API (0.161.0+26.3) as Village Friends.
 - No mixins into vanilla or Village Friends. Hostile mobs are ordinary `Monster`s, so Village
   Friends guards and pets treat them like any other monster.
-- The neutral animals (Wild Boar, Goose, Skunk, Rattlesnake, Cinder Newt) are animals, not monsters,
+- The neutral animals (Wild Boar, Goose, Skunk, Rattlesnake, Cinder Newt, Elephant, Kangaroo, Orchid
+  Mantis) are animals, not monsters,
   so guards leave them alone, and they never go after villagers on their own.
 - RPG add-on (`villagefriends_rpg`): an optional mixin, applied only when the add-on is installed,
   makes its Bestiary count Sporeling, Frostbitten and Lost Miner as Zombies, Briarbones,
@@ -709,6 +803,11 @@ The Java animation code drives these part names:
 | chameleon | `body` with `head` (with `right_eye` / `left_eye` turrets and `casque`), `tail` (with `tail_curl`), four legs as children of body |
 | ostrich | `body` with `neck` (with `head`), `right_wing` / `left_wing`, `tail` and `saddle` (shown only when saddled); `right_leg` / `left_leg` (children of root) each with `right_shin` / `left_shin` |
 | griffin | `body` with `neck` (with `head`), `right_wing` / `left_wing` (folded along the back at rest; the code spreads and beats them in flight) each with `right_wing_tip` / `left_wing_tip`, `tail` (with `tail_tuft`) and `saddle` (shown only when saddled); `right_front_leg`, `left_front_leg` (eagle legs), `right_hind_leg`, `left_hind_leg` (lion legs) (children of root) |
+| cheetah | `body` (the chest; pivot mid-back) with `hips` (the loin, same pivot; the code arches and stretches it in the gallop), `neck` (with `head`; under `head`: `jaw` (the code drops it to pant, showing `tongue`) and optional `right_ear` / `left_ear`), `right_front_leg` / `left_front_leg` (children of body); `right_hind_leg` / `left_hind_leg` and `tail` (with `tail_mid`, then `tail_tip`) are children of `hips`. Each leg has a lower segment child named `<leg>_lower` (e.g. `right_front_leg_lower`); the hind legs' lower segments carry `right_hind_foot` / `left_hind_foot` |
+| elephant | `body` with `head` and `tail`; under `head`: `trunk1` > `trunk2` > `trunk3` (a chain), `right_ear` / `left_ear` (pivot at the front edge where they meet the head; the code swings them out), `right_tusk` / `left_tusk` (hidden on calves), optional `jaw`; `right_front_leg`, `left_front_leg`, `right_hind_leg`, `left_hind_leg` (children of root) |
+| kangaroo | `body` (pivot at the hips; the code tips it upright to box) with `head` (with `right_ear` / `left_ear`), `right_arm` / `left_arm` (they jab) and `pouch` (hidden on bucks); `tail` (child of root, with `tail_tip`); `right_leg` / `left_leg` (the thighs, children of root) each with `right_shin` / `left_shin` and under that `right_foot` / `left_foot` (the long hind foot) |
+| orchid_mantis | `body` (the thorax, pivot mid-body) with `head` (optional `right_antenna` / `left_antenna`; the code moves it to the tip of `prothorax` when it rears), `prothorax` (the raised neck) with `right_arm` / `left_arm` (raptorial forelegs, folded at rest) each with `right_claw` / `left_claw` (the spiked part that snaps out, with a `right_hook` / `left_hook` tibia), `abdomen` (curled up), `right_wing` / `left_wing` (folded flat on the back; the code flares them, showing the eye-spots on `right_hindwing` / `left_hindwing`), walking legs `right_leg1`, `right_leg2`, `left_leg1`, `left_leg2` (children of body) |
+| manta_ray | `body` (pivot at the centre; the code pitches it with the swim) with `right_wing` / `left_wing` (pivot at the body's edge; the code flaps them around z) each with `right_wing_tip` / `left_wing_tip`, `right_lobe` / `left_lobe` (the cephalic fins), optional `dorsal_fin`, and `tail` (with `tail_tip`) |
 
 Hitboxes (blocks, width x height): zombies 0.6x1.95, briarbones 0.6x1.99, gravewarden 0.7x2.3
 (rendered at 1.15x), bog lurker 1.2x0.9, gloomwing 0.9x0.6, dune scorpion 1.3x0.7, tortoise
@@ -719,4 +818,5 @@ dripfang 0.9x0.55, angler 0.9x0.8, driftcap 0.8x1.2, meerkat 0.4x0.6, penguin 0.
 troll 1.6x2.9, prowler 1.0x1.0, stormcaller 0.6x1.95, brineclaw 1.8x1.0, rimewraith 0.8x2.2, riftstalker
 0.7x2.7, oregorger 1.6x1.3, deer 0.8x1.4, goose 0.6x1.0, yak 1.3x1.5, flamingo 0.6x1.5, hummingbird
 0.35x0.35, seal 0.9x0.6, beaver 0.7x0.6, skunk 0.6x0.5, rattlesnake 0.9x0.35, cinder newt 0.7x0.4,
-owl 0.5x0.8, raccoon 0.6x0.6, chameleon 0.5x0.4, ostrich 0.9x1.9, griffin 1.4x1.7.
+owl 0.5x0.8, raccoon 0.6x0.6, chameleon 0.5x0.4, ostrich 0.9x1.9, griffin 1.4x1.7, cheetah 0.7x1.0,
+elephant 1.9x2.6, kangaroo 0.8x1.7, orchid mantis 0.7x0.9, manta ray 1.6x0.5.

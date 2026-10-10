@@ -1,8 +1,9 @@
 # Not-So-Vanilla Mobs
 
-Fifty new mobs for **Minecraft 26.3** (Fabric): three zombie variants, four skeleton variants,
+Fifty-five new mobs for **Minecraft 26.3** (Fabric): three zombie variants, four skeleton variants,
 eight other hostile creatures, ten challengers (big, rare monsters with attacks you can learn to
-beat), twelve friendly animals, five neutral animals, six pets and two mounts (one of them flies).
+beat), thirteen friendly animals, eight neutral animals, seven pets and two mounts (one of them
+flies).
 
 | Mob | Kind | Where to find it | What it does |
 |-----|------|------------------|--------------|
@@ -56,8 +57,13 @@ beat), twelve friendly animals, five neutral animals, six pets and two mounts (o
 | **Chameleon** | pet | jungles | Tame it with spider eyes. Its skin takes the colour of whatever it stands on; crouch beside it and you turn invisible too. |
 | **Ostrich** | mount | Savanna, Savanna Plateau | Tame and saddle it like a horse. The fastest mount on flat ground, a weak jumper, and it glides down from heights with no fall damage. |
 | **Griffin** | flying mount | Stony, Jagged and Frozen Peaks, Meadow (rare) | Eagle in front, lion behind. Tame and saddle it like a horse, then fly it where you look. No fall damage for it or you. |
+| **Cheetah** | pet | Savanna, Savanna Plateau, Windswept Savanna | The fastest thing on legs, in short bursts. Tame it with raw chicken or rabbit. Sprint beside it for Speed II; it runs down and pounces on whatever you fight. |
+| **Elephant** | neutral | Savanna, Savanna Plateau (rare) | Fills its trunk at water and hoses down anyone on fire. Hurt one and the herd trumpets and charges. Breeds with melon slices. |
+| **Kangaroo** | neutral | Badlands, Wooded Badlands, Windswept Savanna | Bounds everywhere. Hit a buck and it boxes back, finishing with a two-footed kick; does carry their joeys in the pouch. Breeds with wheat. |
+| **Orchid Mantis** | neutral | Cherry Grove, Flower Forest | Looks like a cluster of blossoms until you walk up to it: then it snatches and holds you. Watch for a flower that turns its head. Crouch past it. |
+| **Manta Ray** | friendly, swimming | warm and lukewarm oceans | Glides in slow loops and leaps clear of the water. Grab on with an empty hand and it swims where you look. |
 
-All fifty have spawn eggs in the Spawn Eggs creative tab. The full design is in [DESIGN.md](DESIGN.md).
+All fifty-five have spawn eggs in the Spawn Eggs creative tab. The full design is in [DESIGN.md](DESIGN.md).
 More mobs are on the way; [ARCHITECTURE.md](ARCHITECTURE.md) explains how the mod is put together
 and walks through adding one.
 
@@ -117,6 +123,14 @@ Each challenger warns you before its big attack, and each has a weakness:
 - Its skin slowly takes on the colour of the block it's standing on. Crouch within 3 blocks of it
   and you turn invisible too.
 
+## The Cheetah
+- Feed a wild Cheetah **raw chicken or raw rabbit**; each feeding has a 1 in 3 chance to tame it.
+  Wild ones keep their distance, so crouch to get close.
+- Use it with an empty hand to make it sit or follow. Any raw meat heals it.
+- **Sprint partner:** start sprinting with your cheetah nearby and it runs alongside you, giving you
+  Speed II for up to 10 seconds. Then it needs 30 seconds to get its breath back.
+- It sprints at monsters that hurt you, and at the ones you attack, and pounces on them.
+
 ## The Ostrich
 - Tame it like a horse: keep mounting it until it stops throwing you off (feeding it helps). Then
   put a saddle on it (crouch and use it to open its inventory).
@@ -133,6 +147,13 @@ Each challenger warns you before its big attack, and each has a weakness:
   - Let go of forward and it hovers, sinking slowly. Touch the ground to land.
 - Neither of you takes fall damage. Heal it with raw meat; breed two with golden apples.
 
+## Riding a Manta Ray
+- Swim up to a Manta Ray and use it with an empty hand to grab on. No taming or saddle needed.
+- Hold forward and it swims where you look; let go and it glides to a stop.
+- Jump for a strong stroke upward (hold the jump longer for more). At the surface it leaps clear
+  out of the water with you on its back.
+- Crouch to let go.
+
 ## Compatibility
 - Same Minecraft (26.3), Fabric Loader (0.19.5) and Fabric API (0.161.0+26.3) as
   [Village Friends](https://github.com/radhepa/Village-Friends-Minecraft-Mod).
@@ -146,7 +167,7 @@ Each challenger warns you before its big attack, and each has a weakness:
   The other mobs earn normal kill XP. Without the add-on, that hook stays switched off.
 
 ## Install
-Put `not-so-vanilla-mobs-1.4.0.jar` in your `mods` folder next to Fabric API. It's tested together
+Put `not-so-vanilla-mobs-1.5.0.jar` in your `mods` folder next to Fabric API. It's tested together
 with Village Friends 2.26 and its RPG add-on as one modpack.
 
 ## Building

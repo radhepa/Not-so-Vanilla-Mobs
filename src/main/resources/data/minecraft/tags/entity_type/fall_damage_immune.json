@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "nsvmobs:cheetah",
     "nsvmobs:driftcap",
     "nsvmobs:dripfang",
     "nsvmobs:flamingo",
@@ -8,6 +9,7 @@
     "nsvmobs:glowmoth",
     "nsvmobs:griffin",
     "nsvmobs:hummingbird",
+    "nsvmobs:orchid_mantis",
     "nsvmobs:owl",
     "nsvmobs:prowler",
     "nsvmobs:rimewraith",

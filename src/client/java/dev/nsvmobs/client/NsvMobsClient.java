@@ -12,6 +12,7 @@ import dev.nsvmobs.client.model.BrineclawModel;
 import dev.nsvmobs.client.model.BroodmotherModel;
 import dev.nsvmobs.client.model.CapybaraModel;
 import dev.nsvmobs.client.model.ChameleonModel;
+import dev.nsvmobs.client.model.CheetahModel;
 import dev.nsvmobs.client.model.CinderNewtModel;
 import dev.nsvmobs.client.model.CinderhulkModel;
 import dev.nsvmobs.client.model.CragTrollModel;
@@ -19,6 +20,7 @@ import dev.nsvmobs.client.model.DeerModel;
 import dev.nsvmobs.client.model.DriftcapModel;
 import dev.nsvmobs.client.model.DripfangModel;
 import dev.nsvmobs.client.model.DuneScorpionModel;
+import dev.nsvmobs.client.model.ElephantModel;
 import dev.nsvmobs.client.model.FlamingoModel;
 import dev.nsvmobs.client.model.Geometry;
 import dev.nsvmobs.client.model.GloomwingModel;
@@ -28,8 +30,11 @@ import dev.nsvmobs.client.model.GriffinModel;
 import dev.nsvmobs.client.model.HedgehogModel;
 import dev.nsvmobs.client.model.HermitCrabModel;
 import dev.nsvmobs.client.model.HummingbirdModel;
+import dev.nsvmobs.client.model.KangarooModel;
+import dev.nsvmobs.client.model.MantaRayModel;
 import dev.nsvmobs.client.model.MeerkatModel;
 import dev.nsvmobs.client.model.MossbackTortoiseModel;
+import dev.nsvmobs.client.model.OrchidMantisModel;
 import dev.nsvmobs.client.model.OregorgerModel;
 import dev.nsvmobs.client.model.OstrichModel;
 import dev.nsvmobs.client.model.OtterModel;
@@ -239,6 +244,38 @@ public final class NsvMobsClient implements ClientModInitializer {
         renderer(NsvEntities.WYRMLING, ctx -> new CritterRenderer<>(ctx, "wyrmling", WyrmlingModel::new, 0.4F, (e, s) -> {
             s.sitting = e.isInSittingPose();
             s.flying = e.isFlying();
+        }));
+        renderer(NsvEntities.CHEETAH, ctx -> new CritterRenderer<>(ctx, "cheetah", CheetahModel::new, 0.45F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.sitting = e.isInSittingPose() || e.isLookout();
+            s.resting = e.isLounging();
+            s.mode = e.mode();
+            s.modeAge = e.modeAge(s.partialTick);
+        }, List.of("cheetah", "cheetah_cub")));
+        renderer(NsvEntities.ELEPHANT, ctx -> new CritterRenderer<>(ctx, "elephant", ElephantModel::new, 1.3F, (e, s) -> {
+            s.variant = e.isBaby() ? 1 : 0;
+            s.warning = e.isThreatening();
+            s.playing = e.isSpraying();
+            s.holding = e.hasWater();
+        }, List.of("elephant", "elephant_calf")));
+        renderer(NsvEntities.KANGAROO, ctx -> new CritterRenderer<>(ctx, "kangaroo", KangarooModel::new, 0.5F, (e, s) -> {
+            s.variant = e.isBaby() ? 2 : e.isBuck() ? 0 : 1;
+            s.standing = e.isBoxing();
+            s.resting = e.isLounging();
+            s.sitting = e.isPassenger();
+            s.holding = e.isVehicle();   // a doe with her joey aboard hops gently
+            s.mode = e.action();
+            s.modeAge = e.actionAge(s.partialTick);
+        }, List.of("kangaroo", "kangaroo_doe", "kangaroo_joey")));
+        renderer(NsvEntities.ORCHID_MANTIS, ctx -> new CritterRenderer<>(ctx, "orchid_mantis", OrchidMantisModel::new, 0.4F, (e, s) -> {
+            s.lurking = e.isStill();
+            s.flying = e.isFluttering();
+            s.mode = e.action();
+            s.modeAge = e.actionAge(s.partialTick);
+        }));
+        renderer(NsvEntities.MANTA_RAY, ctx -> new CritterRenderer<>(ctx, "manta_ray", MantaRayModel::new, 0.8F, (e, s) -> {
+            s.swimming = e.isInWater();
+            s.playing = e.isBreaching();
         }));
         renderer(NsvEntities.WYRMLING_EMBER, ctx -> new ThrownItemRenderer<>(ctx, 0.5F, true));
         renderer(NsvEntities.BOULDER, ctx -> new ThrownItemRenderer<>(ctx, 3.0F, false));

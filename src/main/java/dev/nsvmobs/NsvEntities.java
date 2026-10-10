@@ -9,6 +9,7 @@ import dev.nsvmobs.entity.Brineclaw;
 import dev.nsvmobs.entity.Broodmother;
 import dev.nsvmobs.entity.Capybara;
 import dev.nsvmobs.entity.Chameleon;
+import dev.nsvmobs.entity.Cheetah;
 import dev.nsvmobs.entity.CinderNewt;
 import dev.nsvmobs.entity.Cinderhulk;
 import dev.nsvmobs.entity.CragTroll;
@@ -16,6 +17,7 @@ import dev.nsvmobs.entity.Deer;
 import dev.nsvmobs.entity.Driftcap;
 import dev.nsvmobs.entity.Dripfang;
 import dev.nsvmobs.entity.DuneScorpion;
+import dev.nsvmobs.entity.Elephant;
 import dev.nsvmobs.entity.Flamingo;
 import dev.nsvmobs.entity.Frostbitten;
 import dev.nsvmobs.entity.Gloomwing;
@@ -27,9 +29,12 @@ import dev.nsvmobs.entity.Hedgehog;
 import dev.nsvmobs.entity.HermitCrab;
 import dev.nsvmobs.entity.Hummingbird;
 import dev.nsvmobs.entity.IceShard;
+import dev.nsvmobs.entity.Kangaroo;
 import dev.nsvmobs.entity.LostMiner;
+import dev.nsvmobs.entity.MantaRay;
 import dev.nsvmobs.entity.Meerkat;
 import dev.nsvmobs.entity.MossbackTortoise;
+import dev.nsvmobs.entity.OrchidMantis;
 import dev.nsvmobs.entity.Oregorger;
 import dev.nsvmobs.entity.Ostrich;
 import dev.nsvmobs.entity.Otter;
@@ -418,6 +423,36 @@ public final class NsvEntities {
             .spawnsIn(20, 2, 4, Biomes.BASALT_DELTAS, Biomes.NETHER_WASTES, Biomes.CRIMSON_FOREST)
             .register();
 
+    public static final EntityType<Elephant> ELEPHANT = MobEntry.builder("elephant", Elephant::new, MobCategory.CREATURE)
+            .size(1.9F, 2.6F, 2.2F).type(t -> t.clientTrackingRange(10))
+            .attributes(Elephant::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(3, 2, 4, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU)
+            .register();
+
+    public static final EntityType<Kangaroo> KANGAROO = MobEntry.builder("kangaroo", Kangaroo::new, MobCategory.CREATURE)
+            .size(0.8F, 1.7F, 1.5F).type(t -> t.clientTrackingRange(10))
+            .attributes(Kangaroo::createAttributes)
+            .spawnRule(Kangaroo::checkSpawnRules)                 // red sand and terracotta as well as grass
+            .spawnsIn(5, 2, 4, Biomes.BADLANDS, Biomes.WOODED_BADLANDS, Biomes.WINDSWEPT_SAVANNA)
+            .register();
+
+    public static final EntityType<OrchidMantis> ORCHID_MANTIS = MobEntry.builder("orchid_mantis", OrchidMantis::new, MobCategory.CREATURE)
+            .size(0.7F, 0.9F, 0.75F)
+            .attributes(OrchidMantis::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(6, 1, 1, Biomes.CHERRY_GROVE)
+            .spawnsIn(1, 1, 1, Biomes.FLOWER_FOREST)
+            .register();
+
+    public static final EntityType<MantaRay> MANTA_RAY = MobEntry.builder("manta_ray", MantaRay::new, MobCategory.WATER_CREATURE)
+            .size(1.6F, 0.5F, 0.3F).type(t -> t.passengerAttachments(0.45F).clientTrackingRange(10))
+            .attributes(MantaRay::createAttributes)
+            .placement(SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES)
+            .spawnRule(MantaRay::checkSpawnRules)
+            .spawnsIn(2, 1, 2, Biomes.WARM_OCEAN, Biomes.LUKEWARM_OCEAN, Biomes.DEEP_LUKEWARM_OCEAN)
+            .register();
+
     // -- pets -------------------------------------------------------------------------------------
     public static final EntityType<Wyrmling> WYRMLING = MobEntry.builder("wyrmling", Wyrmling::new, MobCategory.CREATURE)
             .size(0.6F, 0.6F, 0.45F).type(EntityType.Builder::fireImmune)
@@ -459,6 +494,13 @@ public final class NsvEntities {
             .attributes(Chameleon::createAttributes)
             .spawnRule(Animal::checkAnimalSpawnRules)
             .spawnsIn(4, 1, 1, Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE)
+            .register();
+
+    public static final EntityType<Cheetah> CHEETAH = MobEntry.builder("cheetah", Cheetah::new, MobCategory.CREATURE)
+            .size(0.7F, 1.0F, 0.85F).type(t -> t.clientTrackingRange(10))
+            .attributes(Cheetah::createAttributes)
+            .spawnRule(Animal::checkAnimalSpawnRules)
+            .spawnsIn(3, 1, 2, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA)
             .register();
 
     /** A mount: tamed, saddled and ridden like a horse. */

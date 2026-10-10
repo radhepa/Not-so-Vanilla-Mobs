@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "nsvmobs:angler"
+    "nsvmobs:angler",
+    "nsvmobs:manta_ray"
   ]
 }

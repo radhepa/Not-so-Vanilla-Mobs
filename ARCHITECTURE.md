@@ -122,6 +122,11 @@ aren't mobs (projectiles) are registered at the bottom with `misc(...)` and get 
     them again after their time (and all of them when the server stops), whatever happens to the mob.
   - **Thrown things** extend `MobMissile` (an item-shaped throwable that never hits its thrower's
     kind; `aimAt` leads a target for the missile's own gravity) and are registered with `misc(...)`.
+  - **Ridden mobs** that aren't horses (the Manta Ray) implement `PlayerRideableJumping` (the jump
+    bar) and return the player from `getControllingPassenger()`. Ridden movement runs in `travel` on
+    the rider's client, as for the Griffin, so the server only sees where it ends up.
+  - **Carried young** (a joey in its mother's pouch) are ordinary passengers, placed with
+    `getPassengerAttachmentPoint`.
 - Mobs never change vanilla or other mods' behaviour. No mixins into Minecraft or Village Friends.
 
 ### Client

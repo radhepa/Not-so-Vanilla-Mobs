@@ -326,6 +326,7 @@ public class ShowcaseClientTest implements FabricClientGameTest {
             photo(ctx, world, spotOf(mobs, NsvEntities.MEERKAT), 2.2, 20, String.format("nsvmobs-%02d-meerkat-on-watch", shot++));
 
             shot = newcomers(ctx, world, mobs, shot);
+            shot = SafariScenes.run(ctx, world, shot);
 
             // a lost miner walled in with stone digs through to reach a villager 5 blocks away
             for (String cmd : List.of("fill 30 -61 -2 38 -57 2 stone", "fill 31 -60 0 31 -59 0 air", "fill 36 -60 0 36 -59 0 air",
