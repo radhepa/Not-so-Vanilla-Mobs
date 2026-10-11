@@ -14,7 +14,7 @@ loom {
 
 	runs {
 		configureEach {
-			// ./gradlew runClientGameTest -PnsvTests=Showcase runs only the named client tests.
+			// ./gradlew runClientGameTest -PnsvTests=Showcase runs only the named client tests (Showcase, Lava).
 			if (project.hasProperty('nsvTests')) {
 				vmArg "-Dnsvmobs.tests=${project.property('nsvTests')}"
 			}

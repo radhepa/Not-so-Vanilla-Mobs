@@ -5,7 +5,7 @@
 	"name": "Not-So-Vanilla Mobs game tests",
 	"environment": "*",
 	"entrypoints": {
-		"fabric-client-gametest": ["dev.nsvmobs.test.ShowcaseClientTest"]
+		"fabric-client-gametest": ["dev.nsvmobs.test.ShowcaseClientTest", "dev.nsvmobs.test.LavaClientTest"]
 	},
 	"depends": {
 		"nsvmobs": "*"

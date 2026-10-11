@@ -167,7 +167,7 @@ Each challenger warns you before its big attack, and each has a weakness:
   The other mobs earn normal kill XP. Without the add-on, that hook stays switched off.
 
 ## Install
-Put `not-so-vanilla-mobs-1.5.0.jar` in your `mods` folder next to Fabric API. It's tested together
+Put `not-so-vanilla-mobs-1.5.1.jar` in your `mods` folder next to Fabric API. It's tested together
 with Village Friends 2.26 and its RPG add-on as one modpack.
 
 ## Building

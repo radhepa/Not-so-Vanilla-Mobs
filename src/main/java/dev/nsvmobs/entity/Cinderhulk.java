@@ -36,12 +36,15 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
  * A hulking brute of basalt and magma from the Basalt Deltas. It walks across lava as if it were
@@ -98,7 +101,10 @@ public class Cinderhulk extends Monster {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new FloatGoal(this));
+        // swims up in water; in lava it stands on the surface instead (see tick)
+        this.goalSelector.addGoal(1, new FloatGoal(this) {
+            @Override public boolean canUse() { return !Cinderhulk.this.isInLava() && super.canUse(); }
+        });
         this.goalSelector.addGoal(2, new SlamGoal());
         this.goalSelector.addGoal(3, new HurlGoal());
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0, false));
@@ -127,10 +133,46 @@ public class Cinderhulk extends Monster {
         if (ACTION.equals(key)) this.actionStart = this.tickCount;
     }
 
-    /** It walks on lava like a strider walks on lava. */
+    // -- lava walking, as the strider does it ----------------------------------------------------
+
+    /** The lava top it stands on, the strider's: half a block. */
+    private static final VoxelShape LAVA_FOOTING = Block.column(16.0, 0.0, 8.0);
+
+    /** In 26.3 both this and {@link #getLiquidCollisionShape} are needed for a lava top to hold it up. */
     @Override
     public boolean canStandOnFluid(FluidState fluid) {
         return fluid.is(FluidTags.LAVA);
+    }
+
+    @Override
+    public VoxelShape getLiquidCollisionShape() {
+        return LAVA_FOOTING;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.floatUp();
+    }
+
+    /**
+     * Under the surface (knocked in, a flowing edge, a fall) it rises back up, as striders do but
+     * quicker (about two blocks a second): a fight shouldn't wait on it climbing out of a lava sea.
+     */
+    private void floatUp() {
+        if (!this.isInLava()) return;
+        if (CollisionContext.of(this).isAbove(LAVA_FOOTING, this.blockPosition(), true)
+                && !this.level().getFluidState(this.blockPosition().above()).is(FluidTags.LAVA)) {
+            this.setOnGround(true);
+        } else {
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.5).add(0.0, 0.1, 0.0));
+        }
+    }
+
+    @Override
+    protected void checkFallDamage(double ya, boolean onGround, BlockState onState, BlockPos pos) {
+        if (this.isInLava()) this.resetFallDistance();
+        else super.checkFallDamage(ya, onGround, onState, pos);
     }
 
     /** Basalt cools and cracks in water and rain. */

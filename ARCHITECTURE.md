@@ -284,3 +284,9 @@ Things that differ from older versions and from most tutorials:
 - **Shields:** when a target's shield blocks a melee hit, the attacker's `blockedByItem` is called;
   override it to react (the Prowler is dazed).
   Spawn eggs and natural spawns do get it.
+- **Walking on lava:** `canStandOnFluid(lava)` alone isn't enough. A lava top only holds a mob up
+  if `getLiquidCollisionShape()` also returns a shape (the strider's is `Block.column(16, 0, 8)`).
+  Otherwise it sinks, and because `canStandOnFluid` also turns off lava's lift it then walks the
+  bottom for good. Copy the strider's float-up into `tick()` too, and keep vanilla `FloatGoal` out of
+  lava: its `canUse` is true whenever `isInLava()`, so the mob hops on the surface.
+  `CinderNewt` and `Cinderhulk` do all three; `LavaClientTest` checks the Cinderhulk.
