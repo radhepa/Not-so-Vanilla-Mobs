@@ -622,12 +622,19 @@ public class ShowcaseClientTest implements FabricClientGameTest {
         ctx.runOnClient(client -> client.player.getAbilities().flying = true);   // the camera hovers to watch
         ctx.waitTicks(30);
         shoot(ctx, String.format("nsvmobs-%02d-griffin-gliding", shot++));
-        ctx.waitTicks(400);
-        server.runOnServer(srv -> {
-            Griffin g = srv.overworld().getEntities(NsvEntities.GRIFFIN, sky, e -> true).getFirst();
-            check(g.onGround() && !g.isFlying(), String.format("a riderless griffin glides down and lands (y %.2f)", g.getY()));
-            check(g.getHealth() >= g.getMaxHealth(), "a griffin takes no fall damage");
-        });
+        // watched every tick until it touches down (about 130 ticks from up there), not looked at once
+        // at the end: once down, an unridden griffin may launch into a glide of its own (GlideGoal)
+        // whenever its glide cooldown has run out, and a single late look can catch it mid-glide
+        double[] seen = {0.0, 0.0, 0.0};   // landed (1 or 0), y, health lost
+        for (int t = 0; t < 400 && seen[0] == 0.0; t++) {
+            ctx.waitTicks(1);
+            seen = server.computeOnServer(srv -> {
+                Griffin g = srv.overworld().getEntities(NsvEntities.GRIFFIN, sky, e -> true).getFirst();
+                return new double[]{g.onGround() && !g.isFlying() ? 1.0 : 0.0, g.getY(), g.getMaxHealth() - g.getHealth()};
+            });
+        }
+        check(seen[0] == 1.0, String.format("a riderless griffin glides down and lands (y %.2f)", seen[1]));
+        check(seen[2] <= 0.0, "a griffin takes no fall damage");
         ctx.runOnClient(client -> client.player.getAbilities().flying = false);
         server.runCommand("tp @a 0 -60 -8 0 12");   // back to the pen; let its chunks load again
         ctx.waitTicks(40);
